@@ -12,20 +12,8 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="@string/app_name">
+        app:title="@string/txtToolbarSettings">
         <!-- title text color for the Toolbar-->
     </android.support.v7.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/txtTotalDebt"
-        style="@style/txtTotalDebtStyle"
-        android:text="0T" />
-
-    <Button
-        android:id="@+id/btnPayOffDebt"
-        style="@style/btnPayOffDebtStyle"/>
-
-    <Button
-        android:id="@+id/btnAddDebt"
-        style="@style/btnAddDebtStyle"/>
 </RelativeLayout>

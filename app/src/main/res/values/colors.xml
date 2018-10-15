@@ -3,4 +3,6 @@
     <color name="colorPrimary">#333</color>
     <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="totalDebtMinus">#FF0000</color>
+    <color name="totalDebtPlus">#00FF00</color>
 </resources>

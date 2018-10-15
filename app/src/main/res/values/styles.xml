@@ -8,4 +8,38 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="txtTotalDebtStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@+id/toolbar</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:textSize">50sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="btnPayOffDebtStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@+id/txtTotalDebt</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">120dp</item>
+        <item name="android:text">@string/txtPayOffDebt</item>
+        <item name="android:onClick">btnPayOffDebt_Clicked</item>
+    </style>
+
+    <style name="btnAddDebtStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@+id/btnPayOffDebt</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:text">@string/txtAddDebt</item>
+        <item name="android:onClick">btnAddDebt_Clicked</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
