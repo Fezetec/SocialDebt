@@ -18,8 +18,7 @@
 
     <TextView
         android:id="@+id/txtTotalDebt"
-        style="@style/txtTotalDebtStyle"
-        android:text="0T" />
+        style="@style/txtTotalDebtStyle" />
 
     <Button
         android:id="@+id/btnPayOffDebt"

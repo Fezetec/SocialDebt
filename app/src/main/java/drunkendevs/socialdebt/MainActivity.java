@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-    public int totalDebt = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,20 +15,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar); // get the reference of Toolbar
         setSupportActionBar(toolbar); // Setting/replace toolbar as the ActionBar
 
-        CalculateAndSetTotalDebt(totalDebt);
+        CalculateAndSetTotalDebt();
     }
 
-    private void CalculateAndSetTotalDebt(int totalDebt) {
+    private void CalculateAndSetTotalDebt() {
+        int totalDebt = SocialDebt.getInstance().getTotalDebt();
         TextView txtTotalDebt = findViewById(R.id.txtTotalDebt);
         txtTotalDebt.setText(totalDebt < 0 ? "-" + totalDebt + "T" : totalDebt + "T");
         txtTotalDebt.setTextColor(totalDebt < 0 ? getResources().getColor(R.color.totalDebtMinus) : getResources().getColor(R.color.totalDebtPlus));
     }
 
     public void btnPayOffDebt_Clicked(View v){
-        // Go to view PayOffDebt, send in totalDebt
+        // Go to view PayOffDebt
     }
 
     public void btnAddDebt_Clicked(View v){
-        // Go to view AddDebt, send in totalDebt
+        // Go to view AddDebt
     }
 }
