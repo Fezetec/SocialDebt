@@ -32,4 +32,8 @@ public class MainActivity extends AppCompatActivity {
     public void btnAddDebt_Clicked(View v){
         // Go to view AddDebt
     }
+
+    public void btnDebtActivities_Clicked(View v){
+        // Go to view DebtActivities
+    }
 }

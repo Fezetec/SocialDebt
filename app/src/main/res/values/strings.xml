@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Social Debt</string>
-    <string name="txtToolbarSettings">Settings</string>
+    <string name="txtToolbarDebtActivities">Debt Activites</string>
     <string name="txtPayOffDebt">PAY OFF DEBT</string>
     <string name="txtAddDebt">ADD DEBT</string>
     <string name="title_activity_main2">Main2Activity</string>
