@@ -175,20 +175,20 @@
 
 
 .monaco-list-row[aria-level="1"]  { padding-left:   0px !important; }
-.monaco-list-row[aria-level="2"]  { padding-left:  20px !important; }
-.monaco-list-row[aria-level="3"]  { padding-left:  40px !important; }
-.monaco-list-row[aria-level="4"]  { padding-left:  60px !important; }
-.monaco-list-row[aria-level="5"]  { padding-left:  80px !important; }
-.monaco-list-row[aria-level="6"]  { padding-left: 100px !important; }
-.monaco-list-row[aria-level="7"]  { padding-left: 120px !important; }
-.monaco-list-row[aria-level="8"]  { padding-left: 140px !important; }
-.monaco-list-row[aria-level="9"]  { padding-left: 160px !important; }
-.monaco-list-row[aria-level="10"] { padding-left: 180px !important; }
-.monaco-list-row[aria-level="11"] { padding-left: 200px !important; }
-.monaco-list-row[aria-level="12"] { padding-left: 220px !important; }
-.monaco-list-row[aria-level="13"] { padding-left: 240px !important; }
-.monaco-list-row[aria-level="14"] { padding-left: 260px !important; }
-.monaco-list-row[aria-level="15"] { padding-left: 280px !important; }
+.monaco-list-row[aria-level="2"]  { padding-left:  0px !important; }
+.monaco-list-row[aria-level="3"]  { padding-left:  20px !important; }
+.monaco-list-row[aria-level="4"]  { padding-left:  40px !important; }
+.monaco-list-row[aria-level="5"]  { padding-left:  0px !important; }
+.monaco-list-row[aria-level="6"]  { padding-left: 80px !important; }
+.monaco-list-row[aria-level="7"]  { padding-left: 100px !important; }
+.monaco-list-row[aria-level="8"]  { padding-left: 120px !important; }
+.monaco-list-row[aria-level="9"]  { padding-left: 140px !important; }
+.monaco-list-row[aria-level="10"] { padding-left: 160px !important; }
+.monaco-list-row[aria-level="11"] { padding-left: 180px !important; }
+.monaco-list-row[aria-level="12"] { padding-left: 200px !important; }
+.monaco-list-row[aria-level="13"] { padding-left: 220px !important; }
+.monaco-list-row[aria-level="14"] { padding-left: 240px !important; }
+.monaco-list-row[aria-level="15"] { padding-left: 260px !important; }
 
 .monaco-list-row[aria-level="1"]:before { display: none; }
 .monaco-list-row[aria-level="2"]:before   { left:  11px; }
