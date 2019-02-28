@@ -1,224 +1,108 @@
-.monaco-list-row {
-	overflow: visible;
-	position: relative;
+/* Source 1: https://gist.github.com/jakewtaylor/e92acd697409e53a73ebf8e0145d4c28 */
+/* Source 2: https://gist.github.com/samdenty/b96f4df576d05cb123248f8ebfa899b6 */
+/* File URI: file:///C:/Path/to/file/style.css */
+/* Github Issue: https://github.com/Microsoft/vscode/issues/17777 */
+
+:root {
+  /** Indentation level **/
+  --indent: 25px;
+  /** Opacity of the lines whilst not hovered **/
+  --tree-opacity: 0.1;
+  /** Opacity of the lines on hover **/
+  --tree-opacity-hover: 0.1;
+  /** Color of the lines **/
+  --tree-color: rgb(255, 255, 255);
+  /** Transition Duration */
+  --transition-duration: 100ms;
 }
 
-.monaco-tree .monaco-list-rows > .monaco-list-row {
-	overflow: visible;
+/* Not needed if you use this: https://github.com/Microsoft/vscode/issues/17777#issuecomment-462653229 */
+.explorer-folders-view .monaco-tl-twistie {
+  margin-left: 0px !important;
 }
 
-.monaco-list-row:before {
-	content: '';
-	position: absolute;
-	width: 1px;
-	height: 100%;
+.explorer-folders-view .monaco-list-row {
+  overflow: visible !important;
+  /* position: relative; */
 }
 
-.monaco-list-row:after {
-	content: '';
-	background: rgba(255, 255, 255, 0.2);
-	position: absolute;
-	width: 24px;
-	height: 1px;
-	top: 50%;
+.explorer-folders-view .monaco-list-row:before {
+  content: '';
+  background: var(--tree-color);
+  opacity: var(--tree-opacity);
+  position: absolute;
+  width: 0px;
+  top: -5px;
+  height: 100%;
+  transition: opacity var(--transition-duration) linear;
+  border-left: 1px solid var(--tree-color);
+  z-index: 10000;
 }
 
-.monaco-list-row[aria-expanded]:after {
-	width: 12px;
+.explorer-folders-view .monaco-list-row:after {
+  content: '';
+  background: var(--tree-color);
+  opacity: var(--tree-opacity);
+  position: absolute;
+  width: calc(var(--indent) - 10px);
+  height: 0px;
+  top: 49%;
+  margin-left: 2px;
+  transition: opacity var(--transition-duration) linear;
+  border-top: 1px solid var(--tree-color);
+  z-index: 10000;
 }
 
-.monaco-list-row[aria-level="2"]:before {
-	box-shadow: -1px 0 0 0 rgba(255, 255, 255, 0.2);
+.explorer-folders-view:hover .monaco-list-row:before,
+.explorer-folders-view:hover .monaco-list-row:after {
+  opacity: var(--tree-opacity-hover);
 }
 
-.monaco-list-row[aria-level="3"]:before {
-	box-shadow: -1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px 0 0 0 rgba(255, 255, 255, 0.2);
+.explorer-folders-view .monaco-list-row:not([aria-level='1']):before {
+  box-shadow:
+    calc(var(--indent) * -1 - 1px)  0 0 0 var(--tree-color),
+    calc(var(--indent) * -2 - 1px)  0 0 0 var(--tree-color),
+    calc(var(--indent) * -3 - 1px)  0 0 0 var(--tree-color),
+    calc(var(--indent) * -4 - 1px)  0 0 0 var(--tree-color),
+    calc(var(--indent) * -5 - 1px)  0 0 0 var(--tree-color),
+    calc(var(--indent) * -6 - 1px)  0 0 0 var(--tree-color),
+    calc(var(--indent) * -7 - 1px)  0 0 0 var(--tree-color),
+    calc(var(--indent) * -8 - 1px)  0 0 0 var(--tree-color),
+    calc(var(--indent) * -9 - 1px)  0 0 0 var(--tree-color),
+    calc(var(--indent) * -10 - 1px) 0 0 0 var(--tree-color),
+    calc(var(--indent) * -11 - 1px) 0 0 0 var(--tree-color),
+    calc(var(--indent) * -12 - 1px) 0 0 0 var(--tree-color),
+    calc(var(--indent) * -13 - 1px) 0 0 0 var(--tree-color);
 }
 
-.monaco-list-row[aria-level="4"]:before {
-	box-shadow:	-1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-41px 0 0 0 rgba(255, 255, 255, 0.2);
-}
+.explorer-folders-view .monaco-list-row[aria-level="1"]  { padding-left: calc(var(--indent) * 0)  !important; }
+.explorer-folders-view .monaco-list-row[aria-level="2"]  { padding-left: calc(var(--indent) * 1)  !important; }
+.explorer-folders-view .monaco-list-row[aria-level="3"]  { padding-left: calc(var(--indent) * 2)  !important; }
+.explorer-folders-view .monaco-list-row[aria-level="4"]  { padding-left: calc(var(--indent) * 3)  !important; }
+.explorer-folders-view .monaco-list-row[aria-level="5"]  { padding-left: calc(var(--indent) * 4)  !important; }
+.explorer-folders-view .monaco-list-row[aria-level="6"]  { padding-left: calc(var(--indent) * 5)  !important; }
+.explorer-folders-view .monaco-list-row[aria-level="7"]  { padding-left: calc(var(--indent) * 6)  !important; }
+.explorer-folders-view .monaco-list-row[aria-level="8"]  { padding-left: calc(var(--indent) * 7)  !important; }
+.explorer-folders-view .monaco-list-row[aria-level="9"]  { padding-left: calc(var(--indent) * 8)  !important; }
+.explorer-folders-view .monaco-list-row[aria-level="10"] { padding-left: calc(var(--indent) * 9)  !important; }
+.explorer-folders-view .monaco-list-row[aria-level="11"] { padding-left: calc(var(--indent) * 10) !important; }
+.explorer-folders-view .monaco-list-row[aria-level="12"] { padding-left: calc(var(--indent) * 11) !important; }
+.explorer-folders-view .monaco-list-row[aria-level="13"] { padding-left: calc(var(--indent) * 12) !important; }
+.explorer-folders-view .monaco-list-row[aria-level="14"] { padding-left: calc(var(--indent) * 13) !important; }
+.explorer-folders-view .monaco-list-row[aria-level="15"] { padding-left: calc(var(--indent) * 14) !important; }
 
-.monaco-list-row[aria-level="5"]:before {
-	box-shadow: -1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-41px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-61px 0 0 0 rgba(255, 255, 255, 0.2);
-}
-
-.monaco-list-row[aria-level="6"]:before {
-	box-shadow: -1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-41px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-61px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-81px 0 0 0 rgba(255, 255, 255, 0.2);
-}
-
-.monaco-list-row[aria-level="7"]:before {
-	box-shadow: -1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-41px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-61px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-81px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-101px 0 0 0 rgba(255, 255, 255, 0.2);
-}
-
-.monaco-list-row[aria-level="8"]:before {
-	box-shadow: -1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-41px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-61px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-81px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-101px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-121px 0 0 0 rgba(255, 255, 255, 0.2);
-}
-
-.monaco-list-row[aria-level="9"]:before {
-	box-shadow: -1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-41px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-61px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-81px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-101px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-121px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-141px 0 0 0 rgba(255, 255, 255, 0.2);
-}
-
-.monaco-list-row[aria-level="10"]:before {
-	box-shadow: -1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-41px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-61px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-81px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-101px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-121px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-141px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-161px 0 0 0 rgba(255, 255, 255, 0.2);
-}
-
-.monaco-list-row[aria-level="11"]:before {
-	box-shadow: -1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-41px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-61px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-81px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-101px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-121px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-141px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-161px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-181px 0 0 0 rgba(255, 255, 255, 0.2);
-}
-
-.monaco-list-row[aria-level="12"]:before {
-	box-shadow: -1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-41px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-61px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-81px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-101px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-121px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-141px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-161px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-181px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-201px 0 0 0 rgba(255, 255, 255, 0.2);
-}
-
-.monaco-list-row[aria-level="13"]:before {
-	box-shadow: -1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-41px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-61px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-81px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-101px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-121px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-141px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-161px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-181px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-201px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-221px 0 0 0 rgba(255, 255, 255, 0.2);
-}
-
-.monaco-list-row[aria-level="14"]:before {
-	box-shadow: -1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-41px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-61px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-81px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-101px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-121px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-141px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-161px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-181px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-201px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-221px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-241px 0 0 0 rgba(255, 255, 255, 0.2);
-}
-
-.monaco-list-row[aria-level="15"]:before {
-	box-shadow: -1px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-21px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-41px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-61px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-81px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-101px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-121px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-141px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-161px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-181px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-201px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-221px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-241px -11px 0 0 rgba(255, 255, 255, 0.2),
-				-261px 0 0 0 rgba(255, 255, 255, 0.2);
-}
-
-
-.monaco-list-row[aria-level="1"]  { padding-left:   0px !important; }
-.monaco-list-row[aria-level="2"]  { padding-left:  20px !important; }
-.monaco-list-row[aria-level="3"]  { padding-left:  40px !important; }
-.monaco-list-row[aria-level="4"]  { padding-left:  60px !important; }
-.monaco-list-row[aria-level="5"]  { padding-left:  80px !important; }
-.monaco-list-row[aria-level="6"]  { padding-left: 100px !important; }
-.monaco-list-row[aria-level="7"]  { padding-left: 120px !important; }
-.monaco-list-row[aria-level="8"]  { padding-left: 140px !important; }
-.monaco-list-row[aria-level="9"]  { padding-left: 160px !important; }
-.monaco-list-row[aria-level="10"] { padding-left: 180px !important; }
-.monaco-list-row[aria-level="11"] { padding-left: 200px !important; }
-.monaco-list-row[aria-level="12"] { padding-left: 220px !important; }
-.monaco-list-row[aria-level="13"] { padding-left: 240px !important; }
-.monaco-list-row[aria-level="14"] { padding-left: 260px !important; }
-.monaco-list-row[aria-level="15"] { padding-left: 280px !important; }
-
-.monaco-list-row[aria-level="1"]:before { display: none; }
-.monaco-list-row[aria-level="2"]:before   { left:  11px; }
-.monaco-list-row[aria-level="3"]:before   { left:  31px; }
-.monaco-list-row[aria-level="4"]:before   { left:  51px; }
-.monaco-list-row[aria-level="5"]:before   { left:  71px; }
-.monaco-list-row[aria-level="6"]:before   { left: 91px; }
-.monaco-list-row[aria-level="7"]:before   { left: 111px; }
-.monaco-list-row[aria-level="8"]:before   { left: 131px; }
-.monaco-list-row[aria-level="9"]:before   { left: 151px; }
-.monaco-list-row[aria-level="10"]:before  { left: 171px; }
-.monaco-list-row[aria-level="11"]:before  { left: 191px; }
-.monaco-list-row[aria-level="12"]:before  { left: 211px; }
-.monaco-list-row[aria-level="13"]:before  { left: 231px; }
-.monaco-list-row[aria-level="14"]:before  { left: 251px; }
-.monaco-list-row[aria-level="15"]:before  { left: 271px; }
-
-.monaco-list-row[aria-level="1"]:after { display: none; }
-.monaco-list-row[aria-level="2"]:after   { left:  11px; }
-.monaco-list-row[aria-level="3"]:after   { left:  31px; }
-.monaco-list-row[aria-level="4"]:after   { left:  51px; }
-.monaco-list-row[aria-level="5"]:after   { left:  71px; }
-.monaco-list-row[aria-level="6"]:after   { left: 91px; }
-.monaco-list-row[aria-level="7"]:after   { left: 111px; }
-.monaco-list-row[aria-level="8"]:after   { left: 131px; }
-.monaco-list-row[aria-level="9"]:after   { left: 151px; }
-.monaco-list-row[aria-level="10"]:after  { left: 171px; }
-.monaco-list-row[aria-level="11"]:after  { left: 191px; }
-.monaco-list-row[aria-level="12"]:after  { left: 211px; }
-.monaco-list-row[aria-level="13"]:after  { left: 231px; }
-.monaco-list-row[aria-level="14"]:after  { left: 251px; }
-.monaco-list-row[aria-level="15"]:after  { left: 271px; }
+.explorer-folders-view .monaco-list-row[aria-level="1"]:before, .monaco-list-row[aria-level="1"]:after   { display: none; }
+.explorer-folders-view .monaco-list-row[aria-level="2"]:before, .monaco-list-row[aria-level="2"]:after   { left: calc(7px + (0  * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="3"]:before, .monaco-list-row[aria-level="3"]:after   { left: calc(7px + (1  * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="4"]:before, .monaco-list-row[aria-level="4"]:after   { left: calc(7px + (2  * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="5"]:before, .monaco-list-row[aria-level="5"]:after   { left: calc(7px + (3  * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="6"]:before, .monaco-list-row[aria-level="6"]:after   { left: calc(7px + (4  * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="7"]:before, .monaco-list-row[aria-level="7"]:after   { left: calc(7px + (5  * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="8"]:before, .monaco-list-row[aria-level="8"]:after   { left: calc(7px + (6  * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="9"]:before, .monaco-list-row[aria-level="9"]:after   { left: calc(7px + (7  * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="10"]:before, .monaco-list-row[aria-level="10"]:after { left: calc(7px + (8  * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="11"]:before, .monaco-list-row[aria-level="11"]:after { left: calc(7px + (9  * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="12"]:before, .monaco-list-row[aria-level="12"]:after { left: calc(7px + (10 * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="13"]:before, .monaco-list-row[aria-level="13"]:after { left: calc(7px + (11 * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="14"]:before, .monaco-list-row[aria-level="14"]:after { left: calc(7px + (12 * var(--indent)));}
+.explorer-folders-view .monaco-list-row[aria-level="15"]:before, .monaco-list-row[aria-level="15"]:after { left: calc(7px + (13 * var(--indent)));}
