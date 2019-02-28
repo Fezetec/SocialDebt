@@ -1,6 +1,6 @@
 .monaco-list-row {
 	overflow: visible;
-	position: relative;
+	position: absolute;
 }
 
 .monaco-list .monaco-list-rows > .monaco-list-row {
