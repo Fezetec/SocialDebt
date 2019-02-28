@@ -3,7 +3,7 @@
 	position: relative;
 }
 
-.monaco-tree .monaco-list-rows > .monaco-list-row {
+.monaco-list .monaco-list-rows > .monaco-list-row {
 	overflow: visible;
 }
 
