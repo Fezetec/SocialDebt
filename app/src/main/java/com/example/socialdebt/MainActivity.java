@@ -1,8 +1,10 @@
 package com.example.socialdebt;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -57,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             editor.putString("activities", json2);
             editor.commit();
         }
-        //sharedPreferences = getSharedPreferences(spName, Context.MODE_PRIVATE);
 
         btnAddDebt = findViewById(R.id.btnAddDebt);
         btnAddDebt.setOnClickListener(this);
@@ -80,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 openPayOffDebtDialog();
                 break;
             case R.id.btnSettings:
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
                 //SharedPreferences.Editor editor = sharedPreferences.edit();
                 // editor.putString("name", activities);
                 //editor.commit();
