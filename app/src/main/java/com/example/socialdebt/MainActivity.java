@@ -83,9 +83,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnSettings:
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
-                //SharedPreferences.Editor editor = sharedPreferences.edit();
-                // editor.putString("name", activities);
-                //editor.commit();
                 break;
             default:
                 break;
