@@ -15,6 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import java.util.ArrayList;
+
 public class AddDebtDialog extends AppCompatDialogFragment {
     private Spinner spinner;
     private AddDebtDialogListener listener;
@@ -26,7 +28,14 @@ public class AddDebtDialog extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.layout_dialog, null);
         spinner = view.findViewById(R.id.spnActivities);
 
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_dropdown_item, MainActivity.activities);
+        ArrayList<Activity> addDebtActivities = new ArrayList<>();
+        for (Activity act : MainActivity.activities) {
+            if (act.getPoints() < 0) {
+                addDebtActivities.add(act);
+            }
+        }
+
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_dropdown_item, addDebtActivities);
         spinner.setAdapter(adapter);
 
         builder.setView(view)

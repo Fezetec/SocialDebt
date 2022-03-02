@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import java.util.ArrayList;
+
 public class PayOffDebtDialog extends AppCompatDialogFragment {
     private Spinner spinner;
     private PayOffDebtDialog.PayOffDebtDialogListener listener;
@@ -24,7 +26,13 @@ public class PayOffDebtDialog extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.layout_dialog, null);
         spinner = view.findViewById(R.id.spnActivities);
 
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_dropdown_item, MainActivity.activities);
+        ArrayList<Activity> payOffDebtActivities = new ArrayList<>();
+        for (Activity act : MainActivity.activities) {
+            if (act.getPoints() > 0) {
+                payOffDebtActivities.add(act);
+            }
+        }
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_dropdown_item, payOffDebtActivities);
         spinner.setAdapter(adapter);
 
         builder.setView(view)

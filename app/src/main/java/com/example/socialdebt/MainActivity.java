@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Variables
     static int totalPoints = 0;
     static ArrayList<Activity> activities;
-    SharedPreferences spPoints, spActivities;
+    static SharedPreferences spPoints, spActivities;
     final static String spPointsKey = "spPoints";
     final static String spActivitiesKey = "spActivities";
     Gson gson;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSettings.setOnClickListener(this);
         txtPoints = findViewById(R.id.txtPoints);
 
-        txtPoints.setText(totalPoints + " Points");
+        RenderPoints();
     }
 
     @Override
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void applyAddDebtScore(int score) {
         totalPoints += score;
-        txtPoints.setText(totalPoints + " Points");
+        RenderPoints();
         SharedPreferences.Editor editor = spPoints.edit();
         editor.putInt("totalPoints", totalPoints);
         editor.commit();
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void applyPayOffDebtScore(int score) {
         totalPoints += score;
-        txtPoints.setText(totalPoints + " Points");
+        RenderPoints();
         SharedPreferences.Editor editor = spPoints.edit();
         editor.putInt("totalPoints", totalPoints);
         editor.commit();
@@ -115,5 +116,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void openPayOffDebtDialog() {
         PayOffDebtDialog payOffDebtDialog = new PayOffDebtDialog();
         payOffDebtDialog.show(getSupportFragmentManager(), "PAY OFF DEBT");
+    }
+
+    private void RenderPoints() {
+        txtPoints.setText(totalPoints + " Points");
+        if(totalPoints > 0){
+            txtPoints.setTextColor(Color.GREEN);
+        }else {
+            txtPoints.setTextColor(Color.RED);
+        }
     }
 }
