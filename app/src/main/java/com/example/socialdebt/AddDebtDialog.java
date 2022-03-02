@@ -29,6 +29,7 @@ public class AddDebtDialog extends AppCompatDialogFragment {
         spinner = view.findViewById(R.id.spnActivities);
 
         ArrayList<Activity> addDebtActivities = new ArrayList<>();
+        addDebtActivities.add(new Activity("Select",0));
         for (Activity act : MainActivity.activities) {
             if (act.getPoints() < 0) {
                 addDebtActivities.add(act);

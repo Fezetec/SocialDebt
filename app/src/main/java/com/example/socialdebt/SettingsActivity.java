@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,15 +15,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.slider.Slider;
+import com.google.gson.Gson;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener, Slider.OnSliderTouchListener {
     // View Elements
     Button btnSave;
+    Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        gson = new Gson();
+
         ListActivities();
 
         btnSave = findViewById(R.id.btnSave);
@@ -31,6 +36,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     
     private void ListActivities() {
         View llLayout = findViewById(R.id.llLayout);
+        int counter = 0;
         for (Activity act : MainActivity.activities) {
             TextView txtView = new TextView(this);
             txtView.setText(act.getName());
@@ -38,6 +44,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             ((LinearLayout) llLayout).addView(txtView);
 
             Slider slider = new Slider(this);
+            slider.setId(counter);
             slider.setValueFrom(-10);
             slider.setValueTo(10);
             slider.setValue(act.getPoints());
@@ -45,6 +52,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             slider.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             slider.addOnSliderTouchListener(this);
             ((LinearLayout) llLayout).addView(slider);
+            counter++;
         }
     }
 
@@ -52,6 +60,12 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnSave:
+                String jsonSetActivities = gson.toJson(MainActivity.activities);
+                SharedPreferences.Editor editor = MainActivity.spActivities.edit();
+                editor.putString("activities", jsonSetActivities);
+                editor.commit();
+                Toast.makeText(SettingsActivity.this, "Saved!", Toast.LENGTH_SHORT);
+
                 // Save
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra("activities", MainActivity.activities);
@@ -70,7 +84,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     @SuppressLint("RestrictedApi")
     @Override
     public void onStopTrackingTouch(@NonNull Slider slider) {
-        slider.getValue();
         // TODO Lagre slider.value til MainActivity.activities
+        MainActivity.activities.get(slider.getId()).setPoints((int) slider.getValue());
+
     }
 }

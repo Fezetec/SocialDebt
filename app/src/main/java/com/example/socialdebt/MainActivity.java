@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Shared Preferences, activities
         spActivities = getSharedPreferences(spActivitiesKey, Context.MODE_PRIVATE);
-        String json = spActivities.getString("activities", "");
-        activities = gson.fromJson(json, new TypeToken<List<Activity>>() {}.getType());
+        String jsonGetActivities = spActivities.getString("activities", "");
+        activities = gson.fromJson(jsonGetActivities, new TypeToken<List<Activity>>() {}.getType());
 
         if(activities == null)
         {
@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             activities.add(new Activity("Do dishes", 2));
             activities.add(new Activity("Massage wife", 5));
             activities.add(new Activity("Game", -2));
-            String json2 = gson.toJson(activities);
+            String jsonSetActivities = gson.toJson(activities);
             SharedPreferences.Editor editor = spActivities.edit();
-            editor.putString("activities", json2);
+            editor.putString("activities", jsonSetActivities);
             editor.commit();
         }
 

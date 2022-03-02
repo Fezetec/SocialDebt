@@ -27,6 +27,7 @@ public class PayOffDebtDialog extends AppCompatDialogFragment {
         spinner = view.findViewById(R.id.spnActivities);
 
         ArrayList<Activity> payOffDebtActivities = new ArrayList<>();
+        payOffDebtActivities.add(new Activity("Select",0));
         for (Activity act : MainActivity.activities) {
             if (act.getPoints() > 0) {
                 payOffDebtActivities.add(act);
