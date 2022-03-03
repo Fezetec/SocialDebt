@@ -52,9 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(activities == null)
         {
             activities = new ArrayList<>();
-            activities.add(new Activity("Do dishes", 2));
-            activities.add(new Activity("Massage wife", 5));
-            activities.add(new Activity("Game", -2));
             String jsonSetActivities = gson.toJson(activities);
             SharedPreferences.Editor editor = spActivities.edit();
             editor.putString("activities", jsonSetActivities);
