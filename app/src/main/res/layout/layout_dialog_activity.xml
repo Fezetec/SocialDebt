@@ -4,17 +4,35 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
+    <TextView
+        android:id="@+id/lblName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Actvitity name:"
+        android:textSize="20sp" />
+
     <EditText
         android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/lblName"
         android:hint="Name"></EditText>
+
+    <TextView
+        android:id="@+id/lblSlider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtName"
+        android:layout_marginTop="20dp"
+        android:text="Set a score:"
+        android:textSize="20sp" />
 
     <com.google.android.material.slider.Slider
         android:id="@+id/sldScore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtName"
+        android:layout_below="@+id/lblSlider"
         android:stepSize="1"
         android:value="0"
         android:valueFrom="-10"
