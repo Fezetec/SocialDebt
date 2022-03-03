@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final static String spPointsKey = "spPoints";
     final static String spActivitiesKey = "spActivities";
     Gson gson;
+    AddDebtDialog addDebtDialog;
+    PayOffDebtDialog payOffDebtDialog;
 
     // View Elements
     Button btnAddDebt;
@@ -104,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences.Editor editor = spPoints.edit();
         editor.putInt("totalPoints", totalPoints);
         editor.commit();
+        addDebtDialog.dismiss();
     }
 
     @Override
@@ -113,15 +116,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences.Editor editor = spPoints.edit();
         editor.putInt("totalPoints", totalPoints);
         editor.commit();
+        payOffDebtDialog.dismiss();
     }
 
     private void openAddDebtDialog() {
-        AddDebtDialog addDebtDialog = new AddDebtDialog();
+        addDebtDialog = new AddDebtDialog();
         addDebtDialog.show(getSupportFragmentManager(), "ADD DEBT");
     }
 
     private void openPayOffDebtDialog() {
-        PayOffDebtDialog payOffDebtDialog = new PayOffDebtDialog();
+        payOffDebtDialog = new PayOffDebtDialog();
         payOffDebtDialog.show(getSupportFragmentManager(), "PAY OFF DEBT");
     }
 
