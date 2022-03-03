@@ -48,9 +48,7 @@ public class PayOffDebtDialog extends AppCompatDialogFragment {
         }
 
         builder.setView(view)
-                .setNegativeButton("Cancel", (dialogInterface, i) -> {
-
-                });
+                .setNegativeButton("CLOSE", (dialogInterface, i) -> {});
         return builder.create();
     }
 
