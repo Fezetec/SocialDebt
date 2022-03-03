@@ -95,8 +95,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 Toast.makeText(SettingsActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
 
                 //Redirect to MainActivity
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                finish();
                 break;
             case R.id.btnNew:
                 openNewActivityDialog();

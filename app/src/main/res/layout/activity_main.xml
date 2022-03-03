@@ -39,8 +39,17 @@
         android:id="@+id/btnSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SETTINGS"
+        android:text="ACTIVITIES"
         android:layout_below="@+id/btnAddDebt"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RESET"
+        android:layout_below="@+id/btnSettings"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp" />
 

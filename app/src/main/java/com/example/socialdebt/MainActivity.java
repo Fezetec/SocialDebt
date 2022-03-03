@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnAddDebt;
     Button btnPayOffDebt;
     Button btnSettings;
+    Button btnReset;
     TextView txtPoints;
 
     @Override
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnPayOffDebt.setOnClickListener(this);
         btnSettings = findViewById(R.id.btnSettings);
         btnSettings.setOnClickListener(this);
+        btnReset = findViewById(R.id.btnReset);
+        btnReset.setOnClickListener(this);
         txtPoints = findViewById(R.id.txtPoints);
 
         RenderPoints();
@@ -81,6 +84,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnSettings:
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.btnReset:
+                totalPoints = 0;
+                SharedPreferences.Editor editor = spPoints.edit();
+                editor.putInt("totalPoints", totalPoints);
+                editor.commit();
+                RenderPoints();
                 break;
             default:
                 break;
@@ -117,7 +127,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void RenderPoints() {
         txtPoints.setText(totalPoints + " Points");
-        if(totalPoints > 0){
+        if(totalPoints == 0) {
+            txtPoints.setTextColor(Color.GRAY);
+        }else if(totalPoints > 0){
             txtPoints.setTextColor(Color.GREEN);
         }else {
             txtPoints.setTextColor(Color.RED);
