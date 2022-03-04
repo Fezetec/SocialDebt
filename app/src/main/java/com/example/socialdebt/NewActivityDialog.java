@@ -4,17 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
-
 import com.google.android.material.slider.Slider;
 
-import java.util.ArrayList;
 
 public class NewActivityDialog extends AppCompatDialogFragment {
 
