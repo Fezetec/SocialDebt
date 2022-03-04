@@ -1,9 +1,11 @@
 package com.example.socialdebt;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,14 +17,22 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 public class AddDebtDialog extends AppCompatDialogFragment {
     private AddDebtDialogListener listener;
     private LinearLayout llLayout;
+    private Button btnClose;
 
     @Override
     public android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddDebtDialog.this.requireContext());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog, null);
 
         llLayout = view.findViewById(R.id.llLayout);
+        btnClose = view.findViewById(R.id.btnClose);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
 
         for (Activity act : MainActivity.activities) {
             if (act.getPoints() < 0) {
@@ -41,10 +51,13 @@ public class AddDebtDialog extends AppCompatDialogFragment {
                 ((LinearLayout) llLayout).addView(txtView);
             }
         }
-
-        builder.setView(view)
-                .setNegativeButton("CLOSE", (dialogInterface, i) -> {});
+        builder.setView(view);
         return builder.create();
+        // Transparent dialog under
+//        AlertDialog dialog = builder.create();
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//        dialog.show();
+//        return dialog;
     }
 
     @Override

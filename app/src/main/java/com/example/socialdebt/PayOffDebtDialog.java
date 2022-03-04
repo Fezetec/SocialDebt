@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 public class PayOffDebtDialog extends AppCompatDialogFragment {
     private PayOffDebtDialogListener listener;
     private LinearLayout llLayout;
+    private Button btnClose;
 
     @Override
     public android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -23,6 +25,13 @@ public class PayOffDebtDialog extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.layout_dialog, null);
 
         llLayout = view.findViewById(R.id.llLayout);
+        btnClose = view.findViewById(R.id.btnClose);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
 
         for (Activity act : MainActivity.activities) {
             if (act.getPoints() > 0) {
@@ -41,10 +50,13 @@ public class PayOffDebtDialog extends AppCompatDialogFragment {
                 ((LinearLayout) llLayout).addView(txtView);
             }
         }
-
-        builder.setView(view)
-                .setNegativeButton("CLOSE", (dialogInterface, i) -> {});
+        builder.setView(view);
         return builder.create();
+        // Transparent dialog under
+//        AlertDialog dialog = builder.create();
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//        dialog.show();
+//        return dialog;
     }
 
     @Override
