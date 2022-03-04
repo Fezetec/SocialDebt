@@ -2,9 +2,7 @@ package com.example.socialdebt;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -14,16 +12,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.slider.Slider;
 import com.google.gson.Gson;
 
-public class SettingsActivity extends AppCompatActivity implements View.OnClickListener, Slider.OnSliderTouchListener, NewActivityDialog.NewActivityDialogListener {
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener, Slider.OnSliderTouchListener, NewActivityDialog.NewActivityDialogListener, DeleteDialog.DeleteDialogListener {
     // View Elements
     Button btnSave;
     Button btnNew;
     View llLayout;
     Gson gson;
+    DeleteDialog deleteDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +55,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MainActivity.activities.remove(view.getId());
-                    String jsonSetActivities = gson.toJson(MainActivity.activities);
-                    SharedPreferences.Editor editor = MainActivity.spActivities.edit();
-                    editor.putString("activities", jsonSetActivities);
-                    editor.commit();
-                    Toast.makeText(SettingsActivity.this, "Deleted!", Toast.LENGTH_SHORT).show();
-                    ListActivities();
+                    OpenDeleteConfirmation(view);
                 }
             });
             ((LinearLayout) llLayout).addView(img);
@@ -105,8 +97,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    // TODO OnEditListener på EditText i onCreate
-
     @SuppressLint("RestrictedApi")
     @Override
     public void onStartTrackingTouch(@NonNull Slider slider) {
@@ -116,7 +106,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     @SuppressLint("RestrictedApi")
     @Override
     public void onStopTrackingTouch(@NonNull Slider slider) {
-        // TODO Lagre slider.value til MainActivity.activities
         MainActivity.activities.get(slider.getId()).setPoints((int) slider.getValue());
     }
 
@@ -130,8 +119,26 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         ListActivities();
     }
 
+    @Override
+    public void deleteActivity(Activity act) {
+        MainActivity.activities.remove(act);
+        String jsonSetActivities = gson.toJson(MainActivity.activities);
+        SharedPreferences.Editor editor = MainActivity.spActivities.edit();
+        editor.putString("activities", jsonSetActivities);
+        editor.commit();
+        ListActivities();
+    }
+
     private void openNewActivityDialog() {
         NewActivityDialog newActivityDialog = new NewActivityDialog();
         newActivityDialog.show(getSupportFragmentManager(), "ADD ACTIVITY");
+    }
+
+    private void OpenDeleteConfirmation(View view) {
+        deleteDialog = new DeleteDialog();
+        Bundle args = new Bundle();
+        args.putInt("id", view.getId());
+        deleteDialog.setArguments(args);
+        deleteDialog.show(getSupportFragmentManager(), "DELETE CONFIRMATION");
     }
 }
