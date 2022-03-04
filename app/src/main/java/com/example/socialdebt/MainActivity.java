@@ -115,11 +115,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void openAddDebtDialog() {
+        // TODO: Ta imot view, og send inn id gjennom args
         addDebtDialog = new AddDebtDialog();
         addDebtDialog.show(getSupportFragmentManager(), "ADD DEBT");
     }
 
     private void openPayOffDebtDialog() {
+        // TODO: Ta imot view, og send inn id gjennom args
         payOffDebtDialog = new PayOffDebtDialog();
         payOffDebtDialog.show(getSupportFragmentManager(), "PAY OFF DEBT");
     }

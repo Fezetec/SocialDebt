@@ -42,6 +42,7 @@ public class PayOffDebtDialog extends AppCompatDialogFragment {
                 txtView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        // TODO: Hente fra args, ikkje getId()
                         int score = view.getId();
                         listener.applyPayOffDebtScore(score);
                     }
