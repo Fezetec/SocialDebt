@@ -52,11 +52,6 @@ public class AddDebtDialog extends AppCompatDialogFragment {
         }
         builder.setView(view);
         return builder.create();
-        // Transparent dialog under
-//        AlertDialog dialog = builder.create();
-//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-//        dialog.show();
-//        return dialog;
     }
 
     @Override
