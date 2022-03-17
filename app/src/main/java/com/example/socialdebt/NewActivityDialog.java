@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -30,10 +32,14 @@ public class NewActivityDialog extends AppCompatDialogFragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Activity act = new Activity(txtName.getText().toString(), (int) sldScore.getValue());
-                //int score = act.getPoints();
-                listener.addActivity(act);
-                dismiss();
+                if(txtName.getText().length() <= 0){
+                    Toast.makeText(view.getContext(), "You must enter a name...", Toast.LENGTH_SHORT).show();
+                }else {
+                    Activity act = new Activity(txtName.getText().toString(), (int) sldScore.getValue());
+                    //int score = act.getPoints();
+                    listener.addActivity(act);
+                    dismiss();
+                }
             }
         });
         btnCancel = view.findViewById(R.id.btnCancel);
