@@ -30,26 +30,21 @@ public class NewActivityDialog extends AppCompatDialogFragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Activity act = new Activity(txtName.getText().toString(), (int) sldScore.getValue());
+                //int score = act.getPoints();
+                listener.addActivity(act);
+                dismiss();
             }
         });
         btnCancel = view.findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                dismiss();
             }
         });
 
-        builder.setView(view)
-                .setNegativeButton("Cancel", (dialogInterface, i) -> {
-
-                })
-                .setPositiveButton("OK", (dialogInterface, i) -> {
-                    Activity act = new Activity(txtName.getText().toString(), (int) sldScore.getValue());
-                    //int score = act.getPoints();
-                    listener.addActivity(act);
-                });
+        builder.setView(view);
         txtName = view.findViewById(R.id.txtName);
         sldScore = view.findViewById(R.id.sldScore);
         return builder.create();
