@@ -14,8 +14,8 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AddDebtDialog.AddDebtDialogListener, PayOffDebtDialog.PayOffDebtDialogListener {
-    // Variables
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AddDebtDialog.AddDebtDialogListener, PayOffDebtDialog.PayOffDebtDialogListener, ResetDialog.ResetDialogListener {
+    //region Variables
     static int totalPoints = 0;
     static ArrayList<Activity> activities;
     static SharedPreferences spPoints, spActivities;
@@ -24,13 +24,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Gson gson;
     AddDebtDialog addDebtDialog;
     PayOffDebtDialog payOffDebtDialog;
+    ResetDialog resetDialog;
+    //endregion
 
-    // View Elements
+    //region View Elements
     Button btnAddDebt;
     Button btnPayOffDebt;
     Button btnSettings;
     Button btnReset;
     TextView txtPoints;
+    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         RenderPoints();
     }
 
+    //region Render methods
+    private void RenderPoints() {
+        txtPoints.setText(totalPoints + " Points");
+        if(totalPoints == 0) {
+            txtPoints.setTextColor(Color.GRAY);
+        }else if(totalPoints > 0){
+            txtPoints.setTextColor(Color.GREEN);
+        }else {
+            txtPoints.setTextColor(Color.RED);
+        }
+    }
+    //endregion
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -83,17 +99,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.btnReset:
-                totalPoints = 0;
-                SharedPreferences.Editor editor = spPoints.edit();
-                editor.putInt("totalPoints", totalPoints);
-                editor.commit();
-                RenderPoints();
+                openResetDialog();
                 break;
             default:
                 break;
         }
     }
 
+    //region Dialog listener overrides
     @Override
     public void applyAddDebtScore(int score) {
         totalPoints += score;
@@ -114,6 +127,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         payOffDebtDialog.dismiss();
     }
 
+    @Override
+    public void reset() {
+        totalPoints = 0;
+        SharedPreferences.Editor editor = spPoints.edit();
+        editor.putInt("totalPoints", totalPoints);
+        editor.commit();
+        RenderPoints();
+    }
+    //endregion
+
+    //region Dialog methods
     private void openAddDebtDialog() {
         addDebtDialog = new AddDebtDialog();
         addDebtDialog.show(getSupportFragmentManager(), "ADD DEBT");
@@ -124,14 +148,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         payOffDebtDialog.show(getSupportFragmentManager(), "PAY OFF DEBT");
     }
 
-    private void RenderPoints() {
-        txtPoints.setText(totalPoints + " Points");
-        if(totalPoints == 0) {
-            txtPoints.setTextColor(Color.GRAY);
-        }else if(totalPoints > 0){
-            txtPoints.setTextColor(Color.GREEN);
-        }else {
-            txtPoints.setTextColor(Color.RED);
-        }
+    private void openResetDialog() {
+        resetDialog = new ResetDialog();
+        resetDialog.show(getSupportFragmentManager(), "RESET DEBT");
     }
+    //endregion
 }
