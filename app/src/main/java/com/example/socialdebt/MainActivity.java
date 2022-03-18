@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AddDebtDialog addDebtDialog;
     PayOffDebtDialog payOffDebtDialog;
     ResetDialog resetDialog;
+    GsonHelper gsonHelper;
     //endregion
 
     //region View Elements
@@ -40,15 +41,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         gson = new Gson();
+        gsonHelper = new GsonHelper();
 
         // Shared Preferences, totalPoints
         spPoints = getSharedPreferences(spPointsKey, Context.MODE_PRIVATE);
         totalPoints = spPoints.getInt(getString(R.string.spTotalPoints), 0);
+        // totalPoints = gsonHelper.GetTotalPoints(spPoints, this.getBaseContext());
 
         // Shared Preferences, activities
         spActivities = getSharedPreferences(spActivitiesKey, Context.MODE_PRIVATE);
         String jsonGetActivities = spActivities.getString(getString(R.string.spActivities), "");
         activities = gson.fromJson(jsonGetActivities, new TypeToken<List<Activity>>() {}.getType());
+        // activities = gsonHelper.GetActivities(spActivities, this.getBaseContext());
 
         if(activities == null)
         {
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             SharedPreferences.Editor editor = spActivities.edit();
             editor.putString(getString(R.string.spActivities), jsonSetActivities);
             editor.commit();
+            // gsonHelper.SetActivities(spActivities, activities, this.getBaseContext());
         }
 
         btnAddDebt = findViewById(R.id.btnAddDebt);
@@ -114,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences.Editor editor = spPoints.edit();
         editor.putInt(getString(R.string.spTotalPoints), totalPoints);
         editor.commit();
+        // gsonHelper.SetTotalPoints(spPoints, totalPoints, this.getBaseContext());
         addDebtDialog.dismiss();
     }
 
@@ -124,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences.Editor editor = spPoints.edit();
         editor.putInt(getString(R.string.spTotalPoints), totalPoints);
         editor.commit();
+        // gsonHelper.SetTotalPoints(spPoints, totalPoints, this.getBaseContext());
         payOffDebtDialog.dismiss();
     }
 
@@ -133,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences.Editor editor = spPoints.edit();
         editor.putInt(getString(R.string.spTotalPoints), totalPoints);
         editor.commit();
+        // gsonHelper.SetTotalPoints(spPoints, totalPoints, this.getBaseContext());
         RenderPoints();
     }
     //endregion
