@@ -14,7 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="0 Points"
         android:textSize="60sp" />
 
     <Button
@@ -26,7 +25,7 @@
         android:layout_marginTop="10dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:text="PAY OFF DEBT" />
+        android:text="@string/payOffDebt" />
 
     <Button
         android:id="@+id/btnAddDebt"
@@ -37,7 +36,7 @@
         android:layout_marginTop="10dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:text="ADD DEBT" />
+        android:text="@string/addDebt" />
 
     <Button
         android:id="@+id/btnSettings"
@@ -48,7 +47,7 @@
         android:layout_marginTop="10dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:text="ACTIVITIES" />
+        android:text="@string/activities" />
 
     <Button
         android:id="@+id/btnReset"
@@ -59,6 +58,6 @@
         android:layout_marginTop="10dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:text="RESET" />
+        android:text="@string/reset" />
 
 </RelativeLayout>

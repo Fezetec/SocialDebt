@@ -16,12 +16,13 @@ import com.google.android.material.slider.Slider;
 import com.google.gson.Gson;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener, Slider.OnSliderTouchListener, NewActivityDialog.NewActivityDialogListener, DeleteDialog.DeleteDialogListener {
-    // View Elements
+    //region View Elements
     Button btnSave;
     Button btnNew;
     View llLayout;
     Gson gson;
     DeleteDialog deleteDialog;
+    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +83,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 // Save
                 String jsonSetActivities = gson.toJson(MainActivity.activities);
                 SharedPreferences.Editor editor = MainActivity.spActivities.edit();
-                editor.putString("activities", jsonSetActivities);
+                editor.putString(getString(R.string.spActivities), jsonSetActivities);
                 editor.commit();
-                Toast.makeText(SettingsActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(SettingsActivity.this, getString(R.string.toastSaved), Toast.LENGTH_SHORT).show();
                 //Redirect to MainActivity
                 finish();
                 break;
@@ -114,7 +114,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         MainActivity.activities.add(act);
         String jsonSetActivities = gson.toJson(MainActivity.activities);
         SharedPreferences.Editor editor = MainActivity.spActivities.edit();
-        editor.putString("activities", jsonSetActivities);
+        editor.putString(getString(R.string.spActivities), jsonSetActivities);
         editor.commit();
         ListActivities();
     }
@@ -124,7 +124,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         MainActivity.activities.remove(act);
         String jsonSetActivities = gson.toJson(MainActivity.activities);
         SharedPreferences.Editor editor = MainActivity.spActivities.edit();
-        editor.putString("activities", jsonSetActivities);
+        editor.putString(getString(R.string.spActivities), jsonSetActivities);
         editor.commit();
         ListActivities();
     }

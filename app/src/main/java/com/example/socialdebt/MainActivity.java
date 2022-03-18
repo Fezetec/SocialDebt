@@ -43,11 +43,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Shared Preferences, totalPoints
         spPoints = getSharedPreferences(spPointsKey, Context.MODE_PRIVATE);
-        totalPoints = spPoints.getInt("totalPoints", 0);
+        totalPoints = spPoints.getInt(getString(R.string.spTotalPoints), 0);
 
         // Shared Preferences, activities
         spActivities = getSharedPreferences(spActivitiesKey, Context.MODE_PRIVATE);
-        String jsonGetActivities = spActivities.getString("activities", "");
+        String jsonGetActivities = spActivities.getString(getString(R.string.spActivities), "");
         activities = gson.fromJson(jsonGetActivities, new TypeToken<List<Activity>>() {}.getType());
 
         if(activities == null)
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             activities = new ArrayList<>();
             String jsonSetActivities = gson.toJson(activities);
             SharedPreferences.Editor editor = spActivities.edit();
-            editor.putString("activities", jsonSetActivities);
+            editor.putString(getString(R.string.spActivities), jsonSetActivities);
             editor.commit();
         }
 
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //region Render methods
     private void RenderPoints() {
-        txtPoints.setText(totalPoints + " Points");
+        txtPoints.setText(totalPoints + " " + getString(R.string.points));
         if(totalPoints == 0) {
             txtPoints.setTextColor(Color.GRAY);
         }else if(totalPoints > 0){
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         totalPoints += score;
         RenderPoints();
         SharedPreferences.Editor editor = spPoints.edit();
-        editor.putInt("totalPoints", totalPoints);
+        editor.putInt(getString(R.string.spTotalPoints), totalPoints);
         editor.commit();
         addDebtDialog.dismiss();
     }
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         totalPoints += score;
         RenderPoints();
         SharedPreferences.Editor editor = spPoints.edit();
-        editor.putInt("totalPoints", totalPoints);
+        editor.putInt(getString(R.string.spTotalPoints), totalPoints);
         editor.commit();
         payOffDebtDialog.dismiss();
     }
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void reset() {
         totalPoints = 0;
         SharedPreferences.Editor editor = spPoints.edit();
-        editor.putInt("totalPoints", totalPoints);
+        editor.putInt(getString(R.string.spTotalPoints), totalPoints);
         editor.commit();
         RenderPoints();
     }

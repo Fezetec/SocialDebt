@@ -21,6 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/scrollView"
-        android:text="CLOSE"></Button>
+        android:text="@string/close"></Button>
 
 </RelativeLayout>

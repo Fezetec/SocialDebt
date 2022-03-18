@@ -38,8 +38,8 @@ public class ResetDialog extends AppCompatDialogFragment {
                 dismiss();
             }
         });
-        builder.setTitle("Do you want to reset your balance?");
-        builder.setMessage("Are you sure?");
+        builder.setTitle(getString(R.string.dialogResetTitle));
+        builder.setMessage(getString(R.string.areYouSure));
         builder.setCancelable(false);
         builder.setView(view);
         return builder.create();

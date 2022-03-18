@@ -1,3 +1,34 @@
 <resources>
-    <string name="app_name">Social Debt</string>
+    <string name="app_name">A Partners Debt</string>
+
+    <string name="points">Debt</string>
+
+    <!--    Buttons-->
+    <string name="payOffDebt">PAY OFF DEBT</string>
+    <string name="addDebt">ADD DEBT</string>
+    <string name="activities">ACTIVITIES</string>
+    <string name="settings">SETTINGS</string>
+    <string name="newActivity">New Activity</string>
+
+    <!--    Dialog Texts-->
+    <string name="activityName">Activity name:</string>
+    <string name="nameHint">Name</string>
+    <string name="activitySetScore">Set a score:</string>
+    <string name="dialogDeleteTitle">You are about to delete this!</string>
+    <string name="dialogResetTitle">Do you want to reset your balance?</string>
+    <string name="areYouSure">Are you sure?</string>
+    <string name="save">Save</string>
+    <string name="close">Close</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="reset">Reset</string>
+
+    <!--Toast Messages-->
+    <string name="toastEnterName">You must enter a name...</string>
+    <string name="toastSaved">Saved!</string>
+
+    <!--    Shared Preferences-->
+    <string name="spTotalPoints">totalPoints</string>
+    <string name="spActivities">activities</string>
+
 </resources>

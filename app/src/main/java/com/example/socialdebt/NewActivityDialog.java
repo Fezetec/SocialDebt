@@ -33,7 +33,7 @@ public class NewActivityDialog extends AppCompatDialogFragment {
             @Override
             public void onClick(View view) {
                 if(txtName.getText().length() <= 0){
-                    Toast.makeText(view.getContext(), "You must enter a name...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), getString(R.string.toastEnterName), Toast.LENGTH_SHORT).show();
                 }else {
                     Activity act = new Activity(txtName.getText().toString(), (int) sldScore.getValue());
                     //int score = act.getPoints();
