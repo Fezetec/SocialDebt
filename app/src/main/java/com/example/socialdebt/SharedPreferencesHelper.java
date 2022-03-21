@@ -7,10 +7,10 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GsonHelper {
+public class SharedPreferencesHelper {
     public Gson gson;
 
-    public GsonHelper(){
+    public SharedPreferencesHelper(){
         gson = new Gson();
     }
 

@@ -9,10 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AddDebtDialog.AddDebtDialogListener, PayOffDebtDialog.PayOffDebtDialogListener, ResetDialog.ResetDialogListener {
     //region Variables
@@ -21,11 +18,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static SharedPreferences spPoints, spActivities;
     final static String spPointsKey = "spPoints";
     final static String spActivitiesKey = "spActivities";
-    Gson gson;
     AddDebtDialog addDebtDialog;
     PayOffDebtDialog payOffDebtDialog;
     ResetDialog resetDialog;
-    GsonHelper gsonHelper;
+    SharedPreferencesHelper sharedPreferencesHelper;
     //endregion
 
     //region View Elements
@@ -40,28 +36,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        gson = new Gson();
-        gsonHelper = new GsonHelper();
+        sharedPreferencesHelper = new SharedPreferencesHelper();
 
         // Shared Preferences, totalPoints
         spPoints = getSharedPreferences(spPointsKey, Context.MODE_PRIVATE);
-        totalPoints = spPoints.getInt(getString(R.string.spTotalPoints), 0);
-        // totalPoints = gsonHelper.GetTotalPoints(spPoints, this.getBaseContext());
+         totalPoints = sharedPreferencesHelper.GetTotalPoints(spPoints, this.getBaseContext());
 
         // Shared Preferences, activities
         spActivities = getSharedPreferences(spActivitiesKey, Context.MODE_PRIVATE);
-        String jsonGetActivities = spActivities.getString(getString(R.string.spActivities), "");
-        activities = gson.fromJson(jsonGetActivities, new TypeToken<List<Activity>>() {}.getType());
-        // activities = gsonHelper.GetActivities(spActivities, this.getBaseContext());
+         activities = sharedPreferencesHelper.GetActivities(spActivities, this.getBaseContext());
 
         if(activities == null)
         {
             activities = new ArrayList<>();
-            String jsonSetActivities = gson.toJson(activities);
-            SharedPreferences.Editor editor = spActivities.edit();
-            editor.putString(getString(R.string.spActivities), jsonSetActivities);
-            editor.commit();
-            // gsonHelper.SetActivities(spActivities, activities, this.getBaseContext());
+             sharedPreferencesHelper.SetActivities(spActivities, activities, this.getBaseContext());
         }
 
         btnAddDebt = findViewById(R.id.btnAddDebt);
@@ -116,10 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void applyAddDebtScore(int score) {
         totalPoints += score;
         RenderPoints();
-        SharedPreferences.Editor editor = spPoints.edit();
-        editor.putInt(getString(R.string.spTotalPoints), totalPoints);
-        editor.commit();
-        // gsonHelper.SetTotalPoints(spPoints, totalPoints, this.getBaseContext());
+         sharedPreferencesHelper.SetTotalPoints(spPoints, totalPoints, this.getBaseContext());
         addDebtDialog.dismiss();
     }
 
@@ -127,20 +112,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void applyPayOffDebtScore(int score) {
         totalPoints += score;
         RenderPoints();
-        SharedPreferences.Editor editor = spPoints.edit();
-        editor.putInt(getString(R.string.spTotalPoints), totalPoints);
-        editor.commit();
-        // gsonHelper.SetTotalPoints(spPoints, totalPoints, this.getBaseContext());
+         sharedPreferencesHelper.SetTotalPoints(spPoints, totalPoints, this.getBaseContext());
         payOffDebtDialog.dismiss();
     }
 
     @Override
     public void reset() {
         totalPoints = 0;
-        SharedPreferences.Editor editor = spPoints.edit();
-        editor.putInt(getString(R.string.spTotalPoints), totalPoints);
-        editor.commit();
-        // gsonHelper.SetTotalPoints(spPoints, totalPoints, this.getBaseContext());
+         sharedPreferencesHelper.SetTotalPoints(spPoints, totalPoints, this.getBaseContext());
         RenderPoints();
     }
     //endregion
