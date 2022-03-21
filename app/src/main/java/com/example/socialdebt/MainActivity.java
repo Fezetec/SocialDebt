@@ -40,16 +40,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Shared Preferences, totalPoints
         spPoints = getSharedPreferences(spPointsKey, Context.MODE_PRIVATE);
-         totalPoints = sharedPreferencesHelper.GetTotalPoints(spPoints, this.getBaseContext());
+        totalPoints = sharedPreferencesHelper.GetTotalPoints(spPoints, this.getBaseContext());
 
         // Shared Preferences, activities
         spActivities = getSharedPreferences(spActivitiesKey, Context.MODE_PRIVATE);
-         activities = sharedPreferencesHelper.GetActivities(spActivities, this.getBaseContext());
+        activities = sharedPreferencesHelper.GetActivities(spActivities, this.getBaseContext());
 
         if(activities == null)
         {
             activities = new ArrayList<>();
-             sharedPreferencesHelper.SetActivities(spActivities, activities, this.getBaseContext());
+            sharedPreferencesHelper.SetActivities(spActivities, activities, this.getBaseContext());
         }
 
         btnAddDebt = findViewById(R.id.btnAddDebt);

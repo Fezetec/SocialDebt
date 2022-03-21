@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -15,8 +14,8 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import com.google.android.material.slider.Slider;
 
 
-public class NewActivityDialog extends AppCompatDialogFragment {
-
+public class ActivityDialog extends AppCompatDialogFragment {
+    private SharedPreferencesHelper sharedPreferencesHelper;
     private NewActivityDialogListener listener;
     private EditText txtName;
     private Slider sldScore;
@@ -24,6 +23,7 @@ public class NewActivityDialog extends AppCompatDialogFragment {
 
     @Override
     public android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        sharedPreferencesHelper = new SharedPreferencesHelper();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog_activity, null);
@@ -35,7 +35,7 @@ public class NewActivityDialog extends AppCompatDialogFragment {
                 if(txtName.getText().length() <= 0){
                     Toast.makeText(view.getContext(), getString(R.string.toastEnterName), Toast.LENGTH_SHORT).show();
                 }else {
-                    Activity act = new Activity(txtName.getText().toString(), (int) sldScore.getValue());
+                    Activity act = new Activity(MainActivity.activities.size(), txtName.getText().toString(), (int) sldScore.getValue());
                     //int score = act.getPoints();
                     listener.addActivity(act);
                     dismiss();
@@ -60,7 +60,7 @@ public class NewActivityDialog extends AppCompatDialogFragment {
         super.onAttach(context);
 
         try {
-            listener = (NewActivityDialog.NewActivityDialogListener) context;
+            listener = (ActivityDialog.NewActivityDialogListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "must implement NewActivityDialogListener");
         }

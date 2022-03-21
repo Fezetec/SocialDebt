@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.google.android.material.slider.Slider;
 import com.google.gson.Gson;
 
-public class SettingsActivity extends AppCompatActivity implements View.OnClickListener, Slider.OnSliderTouchListener, NewActivityDialog.NewActivityDialogListener, DeleteDialog.DeleteDialogListener {
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener, Slider.OnSliderTouchListener, ActivityDialog.NewActivityDialogListener, DeleteDialog.DeleteDialogListener {
     //region View Elements
     Button btnSave;
     Button btnNew;
@@ -90,7 +90,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.btnNew:
-                openNewActivityDialog();
+                openActivityDialog();
                 break;
             default:
                 break;
@@ -129,9 +129,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         ListActivities();
     }
 
-    private void openNewActivityDialog() {
-        NewActivityDialog newActivityDialog = new NewActivityDialog();
-        newActivityDialog.show(getSupportFragmentManager(), "ADD ACTIVITY");
+    private void openActivityDialog() {
+        ActivityDialog activityDialog = new ActivityDialog();
+        activityDialog.show(getSupportFragmentManager(), "ADD ACTIVITY");
     }
 
     private void OpenDeleteConfirmation(View view) {
