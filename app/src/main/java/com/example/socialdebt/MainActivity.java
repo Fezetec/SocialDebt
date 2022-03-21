@@ -1,9 +1,7 @@
 package com.example.socialdebt;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -15,9 +13,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //region Variables
     static int totalPoints = 0;
     static ArrayList<Activity> activities;
-    static SharedPreferences spPoints, spActivities;
-    final static String spPointsKey = "spPoints";
-    final static String spActivitiesKey = "spActivities";
     AddDebtDialog addDebtDialog;
     PayOffDebtDialog payOffDebtDialog;
     ResetDialog resetDialog;
@@ -39,17 +34,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sharedPreferencesHelper = new SharedPreferencesHelper();
 
         // Shared Preferences, totalPoints
-        spPoints = getSharedPreferences(spPointsKey, Context.MODE_PRIVATE);
-        totalPoints = sharedPreferencesHelper.GetTotalPoints(spPoints, this.getBaseContext());
+        totalPoints = sharedPreferencesHelper.GetTotalPoints(this.getBaseContext());
 
         // Shared Preferences, activities
-        spActivities = getSharedPreferences(spActivitiesKey, Context.MODE_PRIVATE);
-        activities = sharedPreferencesHelper.GetActivities(spActivities, this.getBaseContext());
+        activities = sharedPreferencesHelper.GetActivities(this.getBaseContext());
 
         if(activities == null)
         {
             activities = new ArrayList<>();
-            sharedPreferencesHelper.SetActivities(spActivities, activities, this.getBaseContext());
+            sharedPreferencesHelper.SetActivities(activities, this.getBaseContext());
         }
 
         btnAddDebt = findViewById(R.id.btnAddDebt);
@@ -104,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void applyAddDebtScore(int score) {
         totalPoints += score;
         RenderPoints();
-         sharedPreferencesHelper.SetTotalPoints(spPoints, totalPoints, this.getBaseContext());
+        sharedPreferencesHelper.SetTotalPoints(totalPoints, this.getBaseContext());
         addDebtDialog.dismiss();
     }
 
@@ -112,14 +105,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void applyPayOffDebtScore(int score) {
         totalPoints += score;
         RenderPoints();
-         sharedPreferencesHelper.SetTotalPoints(spPoints, totalPoints, this.getBaseContext());
+        sharedPreferencesHelper.SetTotalPoints(totalPoints, this.getBaseContext());
         payOffDebtDialog.dismiss();
     }
 
     @Override
     public void reset() {
         totalPoints = 0;
-         sharedPreferencesHelper.SetTotalPoints(spPoints, totalPoints, this.getBaseContext());
+        sharedPreferencesHelper.SetTotalPoints(totalPoints, this.getBaseContext());
         RenderPoints();
     }
     //endregion
