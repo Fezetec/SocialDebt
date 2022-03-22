@@ -47,20 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             sharedPreferencesHelper.SetActivities(activities, this.getBaseContext());
         }
 
-        btnAddDebt = findViewById(R.id.btnAddDebt);
-        btnAddDebt.setOnClickListener(this);
-        btnPayOffDebt = findViewById(R.id.btnPayOffDebt);
-        btnPayOffDebt.setOnClickListener(this);
-        btnSettings = findViewById(R.id.btnSettings);
-        btnSettings.setOnClickListener(this);
-        btnNewActivity = findViewById(R.id.btnNewActivity);
-        btnNewActivity.setOnClickListener(this);
-        btnReset = findViewById(R.id.btnReset);
-        btnReset.setOnClickListener(this);
-        txtPoints = findViewById(R.id.txtPoints);
-
         RenderPoints();
+        ListActivities();
+        ConnectButtons();
     }
+
 
     //region Render methods
     private void RenderPoints() {
@@ -73,6 +64,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             txtPoints.setTextColor(Color.RED);
         }
     }
+
+    private void ListActivities() {
+
+    }
+
+    private void ConnectButtons() {
+        btnAddDebt = findViewById(R.id.btnAddDebt);
+        btnAddDebt.setOnClickListener(this);
+        btnPayOffDebt = findViewById(R.id.btnPayOffDebt);
+        btnPayOffDebt.setOnClickListener(this);
+        btnSettings = findViewById(R.id.btnSettings);
+        btnSettings.setOnClickListener(this);
+        btnNewActivity = findViewById(R.id.btnNewActivity);
+        btnNewActivity.setOnClickListener(this);
+        btnReset = findViewById(R.id.btnReset);
+        btnReset.setOnClickListener(this);
+        txtPoints = findViewById(R.id.txtPoints);
+    }
+
     //endregion
 
     @Override
