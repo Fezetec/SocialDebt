@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.google.android.material.slider.Slider;
 import com.google.gson.Gson;
 
-public class SettingsActivity extends AppCompatActivity implements View.OnClickListener, Slider.OnSliderTouchListener, ActivityDialog.NewActivityDialogListener, DeleteDialog.DeleteDialogListener {
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener, Slider.OnSliderTouchListener, ActivityDialog.ActivityDialogListener, DeleteDialog.DeleteDialogListener {
     //region View Elements
     Button btnSave;
     Button btnNew;
@@ -110,7 +110,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
-    public void addActivity(Activity act) {
+    public void saveActivity(Activity act) {
         MainActivity.activities.add(act);
         sharedPreferencesHelper.SetActivities(MainActivity.activities, this.getBaseContext());
         ListActivities();

@@ -18,7 +18,7 @@ public class SharedPreferencesHelper {
 
     public ArrayList<Activity> GetActivities(Context context){
         String jsonGetActivities = GetSharedPreferences(spActivitiesKey, context).getString(context.getString(R.string.spActivities), "");
-        return this.gson.fromJson(jsonGetActivities, new TypeToken<List<Activity>>() {}.getType());
+        return gson.fromJson(jsonGetActivities, new TypeToken<List<Activity>>() {}.getType());
     }
 
     public void SetActivities(ArrayList<Activity> activities, Context context){
@@ -26,6 +26,17 @@ public class SharedPreferencesHelper {
         SharedPreferences.Editor editor = GetSharedPreferences(spActivitiesKey, context).edit();
         editor.putString(context.getString(R.string.spActivities), jsonSetActivities);
         editor.commit();
+    }
+
+    public Activity GetActivity(int id, Context context){
+        String jsonGetActivities = GetSharedPreferences(spActivitiesKey, context).getString(context.getString(R.string.spActivities), "");
+        ArrayList<Activity> activities = gson.fromJson(jsonGetActivities, new TypeToken<List<Activity>>() {}.getType());
+        for (Activity act : activities) {
+            if(act.id == id){
+                return act;
+            }
+        }
+        return null;
     }
 
     public int GetTotalPoints(Context context){
@@ -40,5 +51,13 @@ public class SharedPreferencesHelper {
 
     private SharedPreferences GetSharedPreferences(String key, Context context){
         return context.getSharedPreferences(key, Context.MODE_PRIVATE);
+    }
+
+    public String GsonThis(Activity act){
+        return gson.toJson(act);
+    }
+
+    public Activity GsonThis(String str){
+        return gson.fromJson(str, new TypeToken<Activity>() {}.getType());
     }
 }

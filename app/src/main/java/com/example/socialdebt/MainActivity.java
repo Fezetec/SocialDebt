@@ -9,13 +9,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AddDebtDialog.AddDebtDialogListener, PayOffDebtDialog.PayOffDebtDialogListener, ResetDialog.ResetDialogListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AddDebtDialog.AddDebtDialogListener, PayOffDebtDialog.PayOffDebtDialogListener, ResetDialog.ResetDialogListener, ActivityDialog.ActivityDialogListener {
     //region Variables
     static int totalPoints = 0;
     static ArrayList<Activity> activities;
     AddDebtDialog addDebtDialog;
     PayOffDebtDialog payOffDebtDialog;
     ResetDialog resetDialog;
+    ActivityDialog activityDialog;
     SharedPreferencesHelper sharedPreferencesHelper;
     //endregion
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnAddDebt;
     Button btnPayOffDebt;
     Button btnSettings;
+    Button btnNewActivity;
     Button btnReset;
     TextView txtPoints;
     //endregion
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnPayOffDebt.setOnClickListener(this);
         btnSettings = findViewById(R.id.btnSettings);
         btnSettings.setOnClickListener(this);
+        btnNewActivity = findViewById(R.id.btnNewActivity);
+        btnNewActivity.setOnClickListener(this);
         btnReset = findViewById(R.id.btnReset);
         btnReset.setOnClickListener(this);
         txtPoints = findViewById(R.id.txtPoints);
@@ -79,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnPayOffDebt:
                 openPayOffDebtDialog();
+                break;
+            case R.id.btnNewActivity:
+                openActivityDialog(-1);
                 break;
             case R.id.btnSettings:
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
@@ -115,6 +122,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sharedPreferencesHelper.SetTotalPoints(totalPoints, this.getBaseContext());
         RenderPoints();
     }
+
+    @Override
+    public void saveActivity(Activity act) {
+        Activity existObject = sharedPreferencesHelper.GetActivity(act.id, this.getBaseContext());
+        if(existObject == null){
+            activities.add(act);
+        }else {
+            for (Activity a : activities) {
+                if(a.id == act.id){
+                    a.setName(act.getName());
+                    a.setPoints(act.getPoints());
+                }
+            }
+        }
+        sharedPreferencesHelper.SetActivities(activities, this.getBaseContext());
+    }
     //endregion
 
     //region Dialog methods
@@ -131,6 +154,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void openResetDialog() {
         resetDialog = new ResetDialog();
         resetDialog.show(getSupportFragmentManager(), "RESET DEBT");
+    }
+
+    private void openActivityDialog(int id) {
+        activityDialog = new ActivityDialog();
+        Bundle args = new Bundle();
+        if(id != -1){
+            args.putString("activity", sharedPreferencesHelper.GsonThis(sharedPreferencesHelper.GetActivity(id, this.getBaseContext())));
+        }
+        activityDialog.setArguments(args);
+        activityDialog.show(getSupportFragmentManager(), "EDIT ACTIVITY");
     }
     //endregion
 }

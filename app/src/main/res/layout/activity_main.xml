@@ -50,10 +50,21 @@
         android:text="@string/activities" />
 
     <Button
-        android:id="@+id/btnReset"
+        android:id="@+id/btnNewActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnSettings"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/newActivity" />
+
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnNewActivity"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:paddingTop="20dp"

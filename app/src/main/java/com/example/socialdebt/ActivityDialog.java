@@ -16,10 +16,12 @@ import com.google.android.material.slider.Slider;
 
 public class ActivityDialog extends AppCompatDialogFragment {
     private SharedPreferencesHelper sharedPreferencesHelper;
-    private NewActivityDialogListener listener;
+    private ActivityDialogListener listener;
     private EditText txtName;
     private Slider sldScore;
     private Button btnSave, btnCancel;
+    Bundle args;
+    Activity activity;
 
     @Override
     public android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -35,9 +37,14 @@ public class ActivityDialog extends AppCompatDialogFragment {
                 if(txtName.getText().length() <= 0){
                     Toast.makeText(view.getContext(), getString(R.string.toastEnterName), Toast.LENGTH_SHORT).show();
                 }else {
-                    Activity act = new Activity(MainActivity.activities.size(), txtName.getText().toString(), (int) sldScore.getValue());
-                    //int score = act.getPoints();
-                    listener.addActivity(act);
+                    if(activity == null){
+                        Activity act = new Activity(MainActivity.activities.size(), txtName.getText().toString(), (int) sldScore.getValue());
+                        listener.saveActivity(act);
+                    }else {
+                        activity.setName(txtName.getText().toString());
+                        activity.setPoints((int) sldScore.getValue());
+                        listener.saveActivity(activity);
+                    }
                     dismiss();
                 }
             }
@@ -51,22 +58,33 @@ public class ActivityDialog extends AppCompatDialogFragment {
         });
 
         builder.setView(view);
-        txtName = view.findViewById(R.id.txtName);
-        sldScore = view.findViewById(R.id.sldScore);
+        ReadValues(view);
         return builder.create();
     }
+
+    private void ReadValues(View view) {
+        args = getArguments();
+        activity = sharedPreferencesHelper.GsonThis(args.getString("activity"));
+        txtName = view.findViewById(R.id.txtName);
+        sldScore = view.findViewById(R.id.sldScore);
+        if(activity != null){
+            txtName.setText(activity.getName());
+            sldScore.setValue(activity.getPoints());
+        }
+    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         try {
-            listener = (ActivityDialog.NewActivityDialogListener) context;
+            listener = (ActivityDialog.ActivityDialogListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "must implement NewActivityDialogListener");
+            throw new ClassCastException(context.toString() + "must implement ActivityDialogListener");
         }
     }
 
-    public interface NewActivityDialogListener {
-        void addActivity(Activity act);
+    public interface ActivityDialogListener {
+        void saveActivity(Activity act);
     }
 }
