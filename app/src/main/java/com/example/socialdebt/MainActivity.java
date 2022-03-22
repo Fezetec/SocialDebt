@@ -47,9 +47,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             sharedPreferencesHelper.SetActivities(activities, this.getBaseContext());
         }
 
+        ConnectButtons();
         RenderPoints();
         ListActivities();
-        ConnectButtons();
     }
 
 
