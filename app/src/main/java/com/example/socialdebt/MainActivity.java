@@ -1,12 +1,20 @@
 package com.example.socialdebt;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.android.material.slider.Slider;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AddDebtDialog.AddDebtDialogListener, PayOffDebtDialog.PayOffDebtDialogListener, ResetDialog.ResetDialogListener, ActivityDialog.ActivityDialogListener {
@@ -27,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnNewActivity;
     Button btnReset;
     TextView txtPoints;
+    View llLayout;
     //endregion
 
     @Override
@@ -47,13 +56,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             sharedPreferencesHelper.SetActivities(activities, this.getBaseContext());
         }
 
-        ConnectButtons();
+        ConnectViews();
         RenderPoints();
         ListActivities();
     }
 
 
     //region Render methods
+    private void ConnectViews() {
+        btnAddDebt = findViewById(R.id.btnAddDebt);
+        btnAddDebt.setOnClickListener(this);
+        btnPayOffDebt = findViewById(R.id.btnPayOffDebt);
+        btnPayOffDebt.setOnClickListener(this);
+        btnSettings = findViewById(R.id.btnSettings);
+        btnSettings.setOnClickListener(this);
+        btnNewActivity = findViewById(R.id.btnNewActivity);
+        btnNewActivity.setOnClickListener(this);
+        btnReset = findViewById(R.id.btnReset);
+        btnReset.setOnClickListener(this);
+        txtPoints = findViewById(R.id.txtPoints);
+        llLayout = findViewById(R.id.llLayout);
+    }
+
     private void RenderPoints() {
         txtPoints.setText(totalPoints + " " + getString(R.string.points));
         if(totalPoints == 0) {
@@ -66,21 +90,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void ListActivities() {
+        ((LinearLayout) llLayout).removeAllViews();
 
-    }
+        for (Activity act : activities) {
+            LinearLayout activityLayout = new LinearLayout(getBaseContext());
+            activityLayout.setOrientation(LinearLayout.HORIZONTAL);
+            activityLayout.setBackgroundColor((int)R.color.white);
+            activityLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //applyAddDebtScore(act.getPoints()); TODO Skrive om denne
+                }
+            });
+            TextView txtView = new TextView(this);
+            txtView.setText(act.getName());
+            txtView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            txtView.setPadding(30, 30, 30, 30);
+            ((LinearLayout) activityLayout).addView(txtView);
+            ((LinearLayout) llLayout).addView(activityLayout);
 
-    private void ConnectButtons() {
-        btnAddDebt = findViewById(R.id.btnAddDebt);
-        btnAddDebt.setOnClickListener(this);
-        btnPayOffDebt = findViewById(R.id.btnPayOffDebt);
-        btnPayOffDebt.setOnClickListener(this);
-        btnSettings = findViewById(R.id.btnSettings);
-        btnSettings.setOnClickListener(this);
-        btnNewActivity = findViewById(R.id.btnNewActivity);
-        btnNewActivity.setOnClickListener(this);
-        btnReset = findViewById(R.id.btnReset);
-        btnReset.setOnClickListener(this);
-        txtPoints = findViewById(R.id.txtPoints);
+//            ImageView img = new ImageView(this);
+//            img.setId(counter);
+//            img.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher_background));
+//            img.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
+//            img.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    //OpenDeleteConfirmation(view);
+//                }
+//            });
+//            ((LinearLayout) llLayout).addView(img);
+
+        }
     }
 
     //endregion
