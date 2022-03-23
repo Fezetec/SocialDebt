@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             activityLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //applyAddDebtScore(act.getPoints()); TODO Skrive om denne!
+                    //applyAddDebtScore(act.getPoints()); TODO Skrive om denne
                 }
             });
             TextView txtView = new TextView(this);
