@@ -1,5 +1,6 @@
 package com.example.socialdebt;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,8 +23,9 @@ public class ActivityDialog extends AppCompatDialogFragment {
     Bundle args;
     Activity activity;
 
+    @NonNull
     @Override
-    public android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         sharedPreferencesHelper = new SharedPreferencesHelper();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
