@@ -28,7 +28,7 @@ public class ResetDialog extends AppCompatDialogFragment {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.reset();
+                listener.Reset();
                 dismiss();
             }
         });
@@ -45,6 +45,10 @@ public class ResetDialog extends AppCompatDialogFragment {
         return builder.create();
     }
 
+    public interface ResetDialogListener {
+        void Reset();
+    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -53,9 +57,5 @@ public class ResetDialog extends AppCompatDialogFragment {
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "must implement DeleteDialogListener");
         }
-    }
-
-    public interface ResetDialogListener {
-        void reset();
     }
 }

@@ -1,15 +1,11 @@
 package com.example.socialdebt;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutCompat;
-
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,21 +13,17 @@ import com.google.android.material.slider.Slider;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AddDebtDialog.AddDebtDialogListener, PayOffDebtDialog.PayOffDebtDialogListener, ResetDialog.ResetDialogListener, ActivityDialog.ActivityDialogListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ResetDialog.ResetDialogListener, ActivityDialog.ActivityDialogListener, DeleteDialog.DeleteDialogListener {
     //region Variables
     static int totalPoints = 0;
     static ArrayList<Activity> activities;
-    AddDebtDialog addDebtDialog;
-    PayOffDebtDialog payOffDebtDialog;
     ResetDialog resetDialog;
     ActivityDialog activityDialog;
+    DeleteDialog deleteDialog;
     SharedPreferencesHelper sharedPreferencesHelper;
     //endregion
 
     //region View Elements
-    Button btnAddDebt;
-    Button btnPayOffDebt;
-    Button btnSettings;
     Button btnNewActivity;
     Button btnReset;
     TextView txtPoints;
@@ -61,15 +53,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ListActivities();
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btnNewActivity:
+                OpenActivityDialog(-1);
+                break;
+            case R.id.btnReset:
+                OpenResetDialog();
+                break;
+            default:
+                break;
+        }
+    }
+
 
     //region Render methods
     private void ConnectViews() {
-        btnAddDebt = findViewById(R.id.btnAddDebt);
-        btnAddDebt.setOnClickListener(this);
-        btnPayOffDebt = findViewById(R.id.btnPayOffDebt);
-        btnPayOffDebt.setOnClickListener(this);
-        btnSettings = findViewById(R.id.btnSettings);
-        btnSettings.setOnClickListener(this);
         btnNewActivity = findViewById(R.id.btnNewActivity);
         btnNewActivity.setOnClickListener(this);
         btnReset = findViewById(R.id.btnReset);
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             activityLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //applyAddDebtScore(act.getPoints()); TODO Skrive om denne
+                    ApplyScore(act.getPoints());
                 }
             });
             TextView txtView = new TextView(this);
@@ -107,107 +107,81 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             txtView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             txtView.setPadding(30, 30, 30, 30);
             ((LinearLayout) activityLayout).addView(txtView);
+
+            ImageButton imgEditButton = new ImageButton(getBaseContext());
+            imgEditButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    OpenActivityDialog(act.getId());
+                }
+            });
+            ((LinearLayout) activityLayout).addView(imgEditButton);
+
+            ImageButton imgDeleteButton = new ImageButton(getBaseContext());
+            imgDeleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    OpenDeleteConfirmation(act.getId());
+                }
+            });
+            ((LinearLayout) activityLayout).addView(imgDeleteButton);
+
             ((LinearLayout) llLayout).addView(activityLayout);
-
-//            ImageView img = new ImageView(this);
-//            img.setId(counter);
-//            img.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher_background));
-//            img.setLayoutParams(new LinearLayout.LayoutParams(100, 100));
-//            img.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    //OpenDeleteConfirmation(view);
-//                }
-//            });
-//            ((LinearLayout) llLayout).addView(img);
-
         }
     }
-
+    public void ApplyScore(int score) {
+        totalPoints += score;
+        RenderPoints();
+        sharedPreferencesHelper.SetTotalPoints(totalPoints, this.getBaseContext());
+    }
     //endregion
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btnAddDebt:
-                openAddDebtDialog();
-                break;
-            case R.id.btnPayOffDebt:
-                openPayOffDebtDialog();
-                break;
-            case R.id.btnNewActivity:
-                openActivityDialog(-1);
-                break;
-            case R.id.btnSettings:
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.btnReset:
-                openResetDialog();
-                break;
-            default:
-                break;
-        }
-    }
 
     //region Dialog listener overrides
     @Override
-    public void applyAddDebtScore(int score) {
-        totalPoints += score;
-        RenderPoints();
-        sharedPreferencesHelper.SetTotalPoints(totalPoints, this.getBaseContext());
-        addDebtDialog.dismiss();
-    }
-
-    @Override
-    public void applyPayOffDebtScore(int score) {
-        totalPoints += score;
-        RenderPoints();
-        sharedPreferencesHelper.SetTotalPoints(totalPoints, this.getBaseContext());
-        payOffDebtDialog.dismiss();
-    }
-
-    @Override
-    public void reset() {
+    public void Reset() {
         totalPoints = 0;
         sharedPreferencesHelper.SetTotalPoints(totalPoints, this.getBaseContext());
         RenderPoints();
     }
 
     @Override
-    public void saveActivity(Activity act) {
-        Activity existObject = sharedPreferencesHelper.GetActivity(act.id, this.getBaseContext());
+    public void SaveActivity(Activity act) {
+        Activity existObject = sharedPreferencesHelper.GetActivity(act.getId(), this.getBaseContext());
         if(existObject == null){
             activities.add(act);
         }else {
             for (Activity a : activities) {
-                if(a.id == act.id){
+                if(a.getId() == act.getId()){
                     a.setName(act.getName());
                     a.setPoints(act.getPoints());
                 }
             }
         }
         sharedPreferencesHelper.SetActivities(activities, this.getBaseContext());
+        ListActivities();
+    }
+
+    @Override
+    public void DeleteActivity(Activity act) {
+        Activity existObject = sharedPreferencesHelper.GetActivity(act.getId(), this.getBaseContext());
+        if(existObject != null)
+        {
+            int index = 0;
+            for (Activity a : activities) {
+                if(a.getId() == act.getId()){
+                    break;
+                }
+                index++;
+            }
+            activities.remove(index);
+            sharedPreferencesHelper.SetActivities(activities, getBaseContext());
+        }
+        ListActivities();
     }
     //endregion
 
     //region Dialog methods
-    private void openAddDebtDialog() {
-        addDebtDialog = new AddDebtDialog();
-        addDebtDialog.show(getSupportFragmentManager(), "ADD DEBT");
-    }
-
-    private void openPayOffDebtDialog() {
-        payOffDebtDialog = new PayOffDebtDialog();
-        payOffDebtDialog.show(getSupportFragmentManager(), "PAY OFF DEBT");
-    }
-
-    private void openResetDialog() {
-        resetDialog = new ResetDialog();
-        resetDialog.show(getSupportFragmentManager(), "RESET DEBT");
-    }
-
-    private void openActivityDialog(int id) {
+    private void OpenActivityDialog(int id) {
         activityDialog = new ActivityDialog();
         Bundle args = new Bundle();
         if(id != -1){
@@ -215,6 +189,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         activityDialog.setArguments(args);
         activityDialog.show(getSupportFragmentManager(), "EDIT ACTIVITY");
+    }
+
+    private void OpenResetDialog() {
+        resetDialog = new ResetDialog();
+        resetDialog.show(getSupportFragmentManager(), "RESET DEBT");
+    }
+
+    private void OpenDeleteConfirmation(int id) {
+        deleteDialog = new DeleteDialog();
+        Bundle args = new Bundle();
+        if(id != -1){
+            args.putString("activity", sharedPreferencesHelper.GsonThis(sharedPreferencesHelper.GetActivity(id, this.getBaseContext())));
+        }
+        deleteDialog.setArguments(args);
+        deleteDialog.show(getSupportFragmentManager(), "DELETE CONFIRMATION");
     }
     //endregion
 }

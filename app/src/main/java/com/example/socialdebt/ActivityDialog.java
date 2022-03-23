@@ -13,7 +13,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import com.google.android.material.slider.Slider;
 
-
 public class ActivityDialog extends AppCompatDialogFragment {
     private SharedPreferencesHelper sharedPreferencesHelper;
     private ActivityDialogListener listener;
@@ -39,11 +38,11 @@ public class ActivityDialog extends AppCompatDialogFragment {
                 }else {
                     if(activity == null){
                         Activity act = new Activity(MainActivity.activities.size(), txtName.getText().toString(), (int) sldScore.getValue());
-                        listener.saveActivity(act);
+                        listener.SaveActivity(act);
                     }else {
                         activity.setName(txtName.getText().toString());
                         activity.setPoints((int) sldScore.getValue());
-                        listener.saveActivity(activity);
+                        listener.SaveActivity(activity);
                     }
                     dismiss();
                 }
@@ -73,18 +72,17 @@ public class ActivityDialog extends AppCompatDialogFragment {
         }
     }
 
+    public interface ActivityDialogListener {
+        void SaveActivity(Activity act);
+    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-
         try {
             listener = (ActivityDialog.ActivityDialogListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "must implement ActivityDialogListener");
         }
-    }
-
-    public interface ActivityDialogListener {
-        void saveActivity(Activity act);
     }
 }
