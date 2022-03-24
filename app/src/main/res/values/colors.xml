@@ -7,4 +7,36 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- LIGHT -->
+    <color name="appBackgroundColor">#FFEEEEEE</color>
+    <color name="appTitleFontColor">#FF444444</color>
+    <color name="appFontColor">#FF666666</color>
+    <color name="activityBorderColor">#FF666666</color>
+    <color name="editButtonBorderColor">#FF66ddff</color>
+    <color name="deleteButtonBorderColor">#FFFF3333</color>
+    <color name="newButtonBorderColor">#FF66ddff</color>
+    <color name="resetButtonBorderColor">#FF66ddff</color>
+    <color name="okButtonBorderColor">#FF00FF00</color>
+    <color name="cancelButtonBorderColor">#FFFF3333</color>
+    <color name="plusPointsColor">#FFFF3333</color>
+    <color name="minusPointsColor">#FF33FF33</color>
+    <color name="dialogBorderColor">#FF000000</color>
+    <color name="sliderColor">#FF66ddff</color>
+
+    <!-- DARK -->
+    <color name="appBackgroundColor_dark">#FF444444</color>
+    <color name="appTitleFontColor_dark">#FF000000</color>
+    <color name="appFontColor_dark">#FF000000</color>
+    <color name="activityBorderColor_dark">#FF000000</color>
+    <color name="editButtonBorderColor_dark">#FF000000</color>
+    <color name="deleteButtonBorderColor_dark">#FF000000</color>
+    <color name="newButtonBorderColor_dark">#FF000000</color>
+    <color name="resetButtonBorderColor_dark">#FF000000</color>
+    <color name="okButtonBorderColor_dark">#FF000000</color>
+    <color name="cancelButtonBorderColor_dark">#FF000000</color>
+    <color name="plusPointsColor_dark">#FF000000</color>
+    <color name="minusPointsColor_dark">#FF000000</color>
+    <color name="dialogBorderColor_dark">#FF000000</color>
+    <color name="sliderColor_dark">#FF000000</color>
 </resources>
