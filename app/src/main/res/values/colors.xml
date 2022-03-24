@@ -8,6 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+
+    <color name="appPrimary">#FFEEEEEE</color>
+    <color name="appPrimary_dark">#FFAAAAAA</color>
+    <color name="appSecondary">#FFAAAAAA</color>
+    <color name="appSecondary_dark">#FF666666</color>
+
     <!-- LIGHT -->
     <color name="appBackgroundColor">#FFEEEEEE</color>
     <color name="appTitleFontColor">#FF444444</color>

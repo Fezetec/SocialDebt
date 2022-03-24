@@ -95,13 +95,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (Activity act : activities) {
             LinearLayout activityLayout = new LinearLayout(getBaseContext());
             activityLayout.setOrientation(LinearLayout.HORIZONTAL);
-            activityLayout.setBackgroundColor((int)R.color.white);
+            activityLayout.setBackgroundColor((int)R.color.activityBorderColor);
             activityLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     ApplyScore(act.getPoints());
                 }
             });
+
             TextView txtView = new TextView(this);
             txtView.setText(act.getName());
             txtView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
