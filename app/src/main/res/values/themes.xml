@@ -9,10 +9,11 @@
         <item name="colorSecondary">@color/appSecondary</item>
         <item name="colorSecondaryVariant">@color/appSecondary_dark</item>
         <item name="colorOnSecondary">@color/appFontColor</item>
+        <item name="colorOnBackground">@color/appSecondary</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="windowNoTitle">true</item>
         <!-- Customize your theme here. -->
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>

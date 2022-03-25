@@ -8,9 +8,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.google.android.material.slider.Slider;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ResetDialog.ResetDialogListener, ActivityDialog.ActivityDialogListener, DeleteDialog.DeleteDialogListener {
@@ -67,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
     //region Render methods
     private void ConnectViews() {
         btnNewActivity = findViewById(R.id.btnNewActivity);
@@ -95,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (Activity act : activities) {
             LinearLayout activityLayout = new LinearLayout(getBaseContext());
             activityLayout.setOrientation(LinearLayout.HORIZONTAL);
-            activityLayout.setBackgroundColor((int)R.color.activityBorderColor);
             activityLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

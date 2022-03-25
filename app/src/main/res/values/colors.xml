@@ -9,13 +9,13 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="appPrimary">#FFEEEEEE</color>
-    <color name="appPrimary_dark">#FFAAAAAA</color>
-    <color name="appSecondary">#FFAAAAAA</color>
-    <color name="appSecondary_dark">#FF666666</color>
+    <color name="appPrimary">#FFFAFAFA</color>
+    <color name="appPrimary_dark">#FFC7C7C7</color>
+    <color name="appSecondary">#FF81D4FA</color>
+    <color name="appSecondary_dark">#FF4BA3C7</color>
 
     <!-- LIGHT -->
-    <color name="appBackgroundColor">#FFEEEEEE</color>
+    <color name="appBackgroundColor">#FFFAFAFA</color>
     <color name="appTitleFontColor">#FF444444</color>
     <color name="appFontColor">#FF666666</color>
     <color name="activityBorderColor">#FF666666</color>
