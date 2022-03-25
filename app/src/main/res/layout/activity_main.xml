@@ -31,42 +31,6 @@
             android:orientation="vertical"></LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnPayOffDebt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtPoints"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="@string/payOffDebt"
-        android:visibility="gone"/>
-
-    <Button
-        android:id="@+id/btnAddDebt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnPayOffDebt"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="@string/addDebt"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/btnSettings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnAddDebt"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:text="@string/activities"
-        android:visibility="gone" />
-
     <RelativeLayout
         android:id="@+id/rltLayout"
         android:layout_width="match_parent"
@@ -80,7 +44,7 @@
             android:layout_marginTop="10dp"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
-            android:background="@drawable/circle"
+            android:text="@string/newActivity"
             android:layout_alignParentRight="true"/>
 
         <Button
