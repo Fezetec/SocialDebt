@@ -1,10 +1,8 @@
 package com.example.socialdebt;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         ConnectViews();
-        RenderPoints();
+        RenderBalance();
         ListActivities();
     }
 
@@ -74,14 +72,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         llLayout = findViewById(R.id.llLayout);
     }
 
-    private void RenderPoints() {
+    private void RenderBalance() {
         txtPoints.setText(totalPoints + " " + getString(R.string.points));
         if(totalPoints == 0) {
-            txtPoints.setTextColor(Color.GRAY);
+            txtPoints.setTextColor(getColor(R.color.appFontColor));
         }else if(totalPoints > 0){
-            txtPoints.setTextColor(Color.GREEN);
+            txtPoints.setTextColor(getColor(R.color.plusPointsColor));
         }else {
-            txtPoints.setTextColor(Color.RED);
+            txtPoints.setTextColor(getColor(R.color.minusPointsColor));
         }
     }
 
@@ -97,12 +95,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     ApplyScore(act.getPoints());
                 }
             });
+            activityLayout.setBackgroundResource(R.drawable.layout_border);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(20, 20, 20, 20);
+            activityLayout.setLayoutParams(params);
 
-            TextView txtView = new TextView(this);
-            txtView.setText(act.getName());
-            txtView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            txtView.setPadding(30, 30, 30, 30);
-            ((LinearLayout) activityLayout).addView(txtView);
+            TextView actText = new TextView(this);
+            actText.setText(act.getName());
+            actText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            actText.setPadding(30, 30, 30, 30);
+            ((LinearLayout) activityLayout).addView(actText);
 
             ImageButton imgEditButton = new ImageButton(getBaseContext());
             imgEditButton.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void ApplyScore(int score) {
         totalPoints += score;
-        RenderPoints();
+        RenderBalance();
         sharedPreferencesHelper.SetTotalPoints(totalPoints, this.getBaseContext());
     }
     //endregion
@@ -137,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void Reset() {
         totalPoints = 0;
         sharedPreferencesHelper.SetTotalPoints(totalPoints, this.getBaseContext());
-        RenderPoints();
+        RenderBalance();
     }
 
     @Override
