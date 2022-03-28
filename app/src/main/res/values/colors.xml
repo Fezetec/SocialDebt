@@ -20,6 +20,7 @@
     <color name="appFontColor">#FF666666</color>
     <color name="activityBorderColor">#FF666666</color>
     <color name="editButtonBorderColor">#FF66ddff</color>
+    <color name="editButtonBorderColorTransparent">#5566ddff</color>
     <color name="deleteButtonBorderColor">#FFFF3333</color>
     <color name="newButtonBorderColor">#FF66ddff</color>
     <color name="resetButtonBorderColor">#FF66ddff</color>
