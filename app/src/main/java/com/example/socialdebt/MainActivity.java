@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //endregion
 
     //region View Elements
-    Button btnNewActivity;
-    Button btnReset;
+    ImageButton imgNew;
+    ImageButton imgReset;
     TextView txtPoints;
     View llLayout;
     //endregion
@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btnNewActivity:
+            case R.id.imgNew:
                 OpenActivityDialog(-1);
                 break;
-            case R.id.btnReset:
+            case R.id.imgReset:
                 OpenResetDialog();
                 break;
             default:
@@ -66,10 +66,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //region Render methods
     private void ConnectViews() {
-        btnNewActivity = findViewById(R.id.btnNewActivity);
-        btnNewActivity.setOnClickListener(this);
-        btnReset = findViewById(R.id.btnReset);
-        btnReset.setOnClickListener(this);
+        imgNew = findViewById(R.id.imgNew);
+        imgNew.setOnClickListener(this);
+        imgReset = findViewById(R.id.imgReset);
+        imgReset.setOnClickListener(this);
         txtPoints = findViewById(R.id.txtPoints);
         llLayout = findViewById(R.id.llLayout);
     }

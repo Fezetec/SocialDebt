@@ -29,6 +29,8 @@
     <color name="minusPointsColor">#FF33FF33</color>
     <color name="dialogBorderColor">#FF000000</color>
     <color name="sliderColor">#FF66ddff</color>
+    <color name="defaultButtonColor">#FFFAFAFA</color>
+    <color name="defaultButtonColorPressed">#FFE9E9E9</color>
 
     <!-- DARK -->
     <color name="appBackgroundColor_dark">#FF444444</color>
