@@ -25,8 +25,8 @@
     <color name="resetButtonBorderColor">#FF66ddff</color>
     <color name="okButtonBorderColor">#FF00FF00</color>
     <color name="cancelButtonBorderColor">#FFFF3333</color>
-    <color name="plusPointsColor">#FFFF3333</color>
-    <color name="minusPointsColor">#FF33FF33</color>
+    <color name="minusPointsColor">#FFFF3333</color>
+    <color name="plusPointsColor">#FF33FF33</color>
     <color name="dialogBorderColor">#FF000000</color>
     <color name="sliderColor">#FF66ddff</color>
     <color name="defaultButtonColor">#FFFAFAFA</color>
