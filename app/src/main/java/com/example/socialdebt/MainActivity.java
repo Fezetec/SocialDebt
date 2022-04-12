@@ -114,6 +114,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             });
             imgEditButton.setBackgroundResource(R.drawable.round_button_edit);
+            imgEditButton.setImageResource(R.drawable.ic_edit_24);
+            LinearLayout.LayoutParams imgEditParams = new LinearLayout.LayoutParams(100, 100);
+            imgEditButton.setLayoutParams(imgEditParams);
             ((LinearLayout) activityLayout).addView(imgEditButton);
 
             ImageButton imgDeleteButton = new ImageButton(getBaseContext());
@@ -124,6 +127,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             });
             imgDeleteButton.setBackgroundResource(R.drawable.round_button_delete);
+            imgDeleteButton.setImageResource(R.drawable.ic_delete_24);
+            LinearLayout.LayoutParams imgDeleteParams = new LinearLayout.LayoutParams(100, 100);
+            imgDeleteButton.setLayoutParams(imgDeleteParams);
             ((LinearLayout) activityLayout).addView(imgDeleteButton);
 
             ((LinearLayout) llLayout).addView(activityLayout);
