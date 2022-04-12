@@ -21,6 +21,7 @@
     <color name="editButtonBorderColor">#FF66ddff</color>
     <color name="editButtonBorderColorTransparent">#5566ddff</color>
     <color name="deleteButtonBorderColor">#FFFF3333</color>
+    <color name="deleteButtonBorderColorTransparent">#55FF3333</color>
     <color name="newButtonBorderColor">#FF66ddff</color>
     <color name="resetButtonBorderColor">#FF66ddff</color>
     <color name="okButtonBorderColor">#FF00FF00</color>
