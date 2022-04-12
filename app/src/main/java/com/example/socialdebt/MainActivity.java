@@ -2,6 +2,7 @@ package com.example.socialdebt;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -102,7 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             TextView actText = new TextView(this);
             actText.setText(act.getName());
-            actText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            LinearLayout.LayoutParams actTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            actTextParams.gravity = Gravity.CENTER_VERTICAL;
+            actTextParams.weight = 1;
+            actText.setLayoutParams(actTextParams);
             actText.setPadding(30, 30, 30, 30);
             ((LinearLayout) activityLayout).addView(actText);
 
@@ -116,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             imgEditButton.setBackgroundResource(R.drawable.round_button_edit);
             imgEditButton.setImageResource(R.drawable.ic_edit_24);
             LinearLayout.LayoutParams imgEditParams = new LinearLayout.LayoutParams(100, 100);
+            imgEditParams.setMargins(20, 20, 10, 20);
             imgEditButton.setLayoutParams(imgEditParams);
             ((LinearLayout) activityLayout).addView(imgEditButton);
 
@@ -129,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             imgDeleteButton.setBackgroundResource(R.drawable.round_button_delete);
             imgDeleteButton.setImageResource(R.drawable.ic_delete_24);
             LinearLayout.LayoutParams imgDeleteParams = new LinearLayout.LayoutParams(100, 100);
+            imgDeleteParams.setMargins(10, 20, 20, 20);
             imgDeleteButton.setLayoutParams(imgDeleteParams);
             ((LinearLayout) activityLayout).addView(imgDeleteButton);
 
