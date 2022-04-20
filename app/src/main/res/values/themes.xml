@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.SocialDebt" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.SocialDebt" parent="Theme.MaterialComponents.Light.Bridge">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/appPrimary</item>
         <item name="colorPrimaryVariant">@color/appPrimary_dark</item>
@@ -11,9 +11,10 @@
         <item name="colorOnSecondary">@color/appFontColor</item>
         <item name="colorOnBackground">@color/appSecondary</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/appPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
-        <item name="windowNoTitle">true</item>
+<!--        <item name="windowNoTitle">true</item>-->
+        <item name="android:textColorPrimary">@color/appFontColor</item>
     </style>
 </resources>
