@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="20dp">
 
     <TextView
@@ -33,6 +34,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblSlider"
+        app:thumbColor="@color/sliderColor"
+        app:tickColor="@color/appPrimary"
+        app:haloColor="@color/sliderColorTransparent"
+        app:trackColor="@color/sliderColor"
+        app:labelStyle="@style/Widget.App.Tooltip"
         android:stepSize="1"
         android:value="0"
         android:valueFrom="-10"
