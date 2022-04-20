@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void RenderBalance() {
-        txtPoints.setText(totalPoints + " " + getString(R.string.points));
+        txtPoints.setText(String.valueOf(totalPoints));
         if(totalPoints == 0) {
             txtPoints.setTextColor(getColor(R.color.appFontColor));
         }else if(totalPoints > 0){
