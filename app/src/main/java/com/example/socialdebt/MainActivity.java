@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ((LinearLayout) llLayout).removeAllViews();
 
         for (Activity act : activities) {
+            // LAYOUT
             LinearLayout activityLayout = new LinearLayout(getBaseContext());
             activityLayout.setOrientation(LinearLayout.HORIZONTAL);
             activityLayout.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +102,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             params.setMargins(20, 20, 20, 20);
             activityLayout.setLayoutParams(params);
 
+            // ACTIVITY POINTS
+            TextView actPoints = new TextView(this);
+            actPoints.setText(String.valueOf(act.getPoints()));
+            if(act.getPoints() > 0){
+                actPoints.setTextColor(getColor(R.color.plusPointsColor));
+            }else if (act.getPoints() < 0){
+                actPoints.setTextColor(getColor(R.color.minusPointsColor));
+            }
+            LinearLayout.LayoutParams actPointsParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            actPointsParams.gravity = Gravity.CENTER_VERTICAL;
+            actPoints.setLayoutParams(actPointsParams);
+            actPoints.setPadding(30, 30, 30, 30);
+            ((LinearLayout) activityLayout).addView(actPoints);
+
+            // ACTIVITY TEXT
             TextView actText = new TextView(this);
             actText.setText(act.getName());
             LinearLayout.LayoutParams actTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -110,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             actText.setPadding(30, 30, 30, 30);
             ((LinearLayout) activityLayout).addView(actText);
 
+            // EDIT BUTTON
             ImageButton imgEditButton = new ImageButton(getBaseContext());
             imgEditButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -124,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             imgEditButton.setLayoutParams(imgEditParams);
             ((LinearLayout) activityLayout).addView(imgEditButton);
 
+            // DELETE BUTTON
             ImageButton imgDeleteButton = new ImageButton(getBaseContext());
             imgDeleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
