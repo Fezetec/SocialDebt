@@ -1,6 +1,8 @@
 package com.example.socialdebt;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -87,76 +89,88 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void ListActivities() {
         ((LinearLayout) llLayout).removeAllViews();
 
-        for (Activity act : activities) {
-            // LAYOUT
-            LinearLayout activityLayout = new LinearLayout(getBaseContext());
-            activityLayout.setOrientation(LinearLayout.HORIZONTAL);
-            activityLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ApplyScore(act.getPoints());
-                }
-            });
-            activityLayout.setBackgroundResource(R.drawable.layout_border);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(20, 20, 20, 20);
-            activityLayout.setLayoutParams(params);
+        if(activities.isEmpty()){
+            TextView txtEmptyList = new TextView(this);
+            txtEmptyList.setText(R.string.emptyActivities);
+            LinearLayout.LayoutParams txtEmptyListParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            txtEmptyListParams.gravity = Gravity.CENTER;
+            txtEmptyListParams.weight = 1;
+            txtEmptyList.setLayoutParams(txtEmptyListParams);
+            txtEmptyList.setTypeface(null, Typeface.ITALIC);
+            txtEmptyList.setPadding(30, 30, 30, 30);
+            ((LinearLayout) llLayout).addView(txtEmptyList);
+        }else {
+            for (Activity act : activities) {
+                // LAYOUT
+                LinearLayout activityLayout = new LinearLayout(getBaseContext());
+                activityLayout.setOrientation(LinearLayout.HORIZONTAL);
+                activityLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ApplyScore(act.getPoints());
+                    }
+                });
+                activityLayout.setBackgroundResource(R.drawable.layout_border);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(20, 20, 20, 20);
+                activityLayout.setLayoutParams(params);
 
-            // ACTIVITY POINTS
-            TextView actPoints = new TextView(this);
-            actPoints.setText(String.valueOf(act.getPoints()));
-            if(act.getPoints() > 0){
-                actPoints.setTextColor(getColor(R.color.plusPointsColor));
-            }else if (act.getPoints() < 0){
-                actPoints.setTextColor(getColor(R.color.minusPointsColor));
+                // ACTIVITY POINTS
+                TextView actPoints = new TextView(this);
+                actPoints.setText(String.valueOf(act.getPoints()));
+                if(act.getPoints() > 0){
+                    actPoints.setTextColor(getColor(R.color.plusPointsColor));
+                }else if (act.getPoints() < 0){
+                    actPoints.setTextColor(getColor(R.color.minusPointsColor));
+                }
+                LinearLayout.LayoutParams actPointsParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                actPointsParams.gravity = Gravity.CENTER_VERTICAL;
+                actPoints.setLayoutParams(actPointsParams);
+                actPoints.setPadding(30, 30, 30, 30);
+                ((LinearLayout) activityLayout).addView(actPoints);
+
+                // ACTIVITY TEXT
+                TextView actText = new TextView(this);
+                actText.setText(act.getName());
+                LinearLayout.LayoutParams actTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                actTextParams.gravity = Gravity.CENTER_VERTICAL;
+                actTextParams.weight = 1;
+                actText.setLayoutParams(actTextParams);
+                actText.setPadding(30, 30, 30, 30);
+                ((LinearLayout) activityLayout).addView(actText);
+
+                // EDIT BUTTON
+                ImageButton imgEditButton = new ImageButton(getBaseContext());
+                imgEditButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        OpenActivityDialog(act.getId());
+                    }
+                });
+                imgEditButton.setBackgroundResource(R.drawable.round_button_edit);
+                imgEditButton.setImageResource(R.drawable.ic_edit_24);
+                LinearLayout.LayoutParams imgEditParams = new LinearLayout.LayoutParams(100, 100);
+                imgEditParams.setMargins(20, 20, 10, 20);
+                imgEditButton.setLayoutParams(imgEditParams);
+                ((LinearLayout) activityLayout).addView(imgEditButton);
+
+                // DELETE BUTTON
+                ImageButton imgDeleteButton = new ImageButton(getBaseContext());
+                imgDeleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        OpenDeleteConfirmation(act.getId());
+                    }
+                });
+                imgDeleteButton.setBackgroundResource(R.drawable.round_button_delete);
+                imgDeleteButton.setImageResource(R.drawable.ic_delete_24);
+                LinearLayout.LayoutParams imgDeleteParams = new LinearLayout.LayoutParams(100, 100);
+                imgDeleteParams.setMargins(10, 20, 20, 20);
+                imgDeleteButton.setLayoutParams(imgDeleteParams);
+                ((LinearLayout) activityLayout).addView(imgDeleteButton);
+
+                ((LinearLayout) llLayout).addView(activityLayout);
             }
-            LinearLayout.LayoutParams actPointsParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            actPointsParams.gravity = Gravity.CENTER_VERTICAL;
-            actPoints.setLayoutParams(actPointsParams);
-            actPoints.setPadding(30, 30, 30, 30);
-            ((LinearLayout) activityLayout).addView(actPoints);
-
-            // ACTIVITY TEXT
-            TextView actText = new TextView(this);
-            actText.setText(act.getName());
-            LinearLayout.LayoutParams actTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            actTextParams.gravity = Gravity.CENTER_VERTICAL;
-            actTextParams.weight = 1;
-            actText.setLayoutParams(actTextParams);
-            actText.setPadding(30, 30, 30, 30);
-            ((LinearLayout) activityLayout).addView(actText);
-
-            // EDIT BUTTON
-            ImageButton imgEditButton = new ImageButton(getBaseContext());
-            imgEditButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    OpenActivityDialog(act.getId());
-                }
-            });
-            imgEditButton.setBackgroundResource(R.drawable.round_button_edit);
-            imgEditButton.setImageResource(R.drawable.ic_edit_24);
-            LinearLayout.LayoutParams imgEditParams = new LinearLayout.LayoutParams(100, 100);
-            imgEditParams.setMargins(20, 20, 10, 20);
-            imgEditButton.setLayoutParams(imgEditParams);
-            ((LinearLayout) activityLayout).addView(imgEditButton);
-
-            // DELETE BUTTON
-            ImageButton imgDeleteButton = new ImageButton(getBaseContext());
-            imgDeleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    OpenDeleteConfirmation(act.getId());
-                }
-            });
-            imgDeleteButton.setBackgroundResource(R.drawable.round_button_delete);
-            imgDeleteButton.setImageResource(R.drawable.ic_delete_24);
-            LinearLayout.LayoutParams imgDeleteParams = new LinearLayout.LayoutParams(100, 100);
-            imgDeleteParams.setMargins(10, 20, 20, 20);
-            imgDeleteButton.setLayoutParams(imgDeleteParams);
-            ((LinearLayout) activityLayout).addView(imgDeleteButton);
-
-            ((LinearLayout) llLayout).addView(activityLayout);
         }
     }
     public void ApplyScore(int score) {

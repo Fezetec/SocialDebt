@@ -2,6 +2,7 @@
     <string name="app_name">A Partners Debt</string>
 
     <string name="currentBalance">Your balance:</string>
+    <string name="emptyActivities">No activities...</string>
 
     <!--    Buttons-->
     <string name="payOffDebt">PAY OFF DEBT</string>
