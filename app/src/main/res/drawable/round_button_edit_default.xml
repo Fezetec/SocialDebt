@@ -7,7 +7,7 @@
             <solid android:color="#00FFFFFF"></solid>
             <size android:width="30dp" android:height="30dp"></size>
             <corners android:radius="20dp"></corners>
-            <stroke android:color="@color/editButtonBorderColorTransparent" android:width="5dp"></stroke>
+            <stroke android:color="@color/bigButtonBorderColorTransparent" android:width="5dp"></stroke>
         </shape>
     </item>
     <!-- Foreground -->

@@ -4,5 +4,5 @@
     <solid android:color="@color/defaultButtonColorPressed"></solid>
     <size android:width="80dp" android:height="80dp"></size>
     <corners android:radius="40dp"></corners>
-    <stroke android:color="@color/editButtonBorderColor" android:width="5dp"></stroke>
+    <stroke android:color="@color/bigButtonBorderColor" android:width="5dp"></stroke>
 </shape>
