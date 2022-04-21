@@ -13,6 +13,7 @@
         android:layout_margin="10dp"
         android:layout_weight="50"
         android:background="@drawable/cancel_button"
+        android:stateListAnimator="@null"
         android:text="@string/cancel" />
 
     <Button
@@ -23,6 +24,7 @@
         android:layout_margin="10dp"
         android:layout_weight="50"
         android:background="@drawable/ok_button"
+        android:stateListAnimator="@null"
         android:text="@string/delete" />
 
 </LinearLayout>

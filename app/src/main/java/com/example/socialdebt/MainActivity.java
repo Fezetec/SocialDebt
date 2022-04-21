@@ -126,7 +126,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 LinearLayout.LayoutParams actPointsParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 actPointsParams.gravity = Gravity.CENTER_VERTICAL;
                 actPoints.setLayoutParams(actPointsParams);
-                actPoints.setPadding(30, 30, 30, 30);
+                actPoints.setPadding(50, 30, 30, 30);
+                actPoints.setTextSize(15f);
                 ((LinearLayout) activityLayout).addView(actPoints);
 
                 // ACTIVITY TEXT

@@ -24,7 +24,7 @@
     <color name="deleteButtonBorderColorTransparent">#55FF3333</color>
     <color name="newButtonBorderColor">#FF66ddff</color>
     <color name="resetButtonBorderColor">#FF66ddff</color>
-    <color name="okButtonBorderColor">#FF00FF00</color>
+    <color name="okButtonBorderColor">#FF00AA00</color>
     <color name="okButtonBorderColorTransparent">#5500FF00</color>
     <color name="cancelButtonBorderColor">#FFFF3333</color>
     <color name="cancelButtonBorderColorTransparent">#55FF3333</color>
@@ -35,6 +35,7 @@
     <color name="sliderColorTransparent">#5566ddff</color>
     <color name="defaultButtonColor">#FFFAFAFA</color>
     <color name="defaultButtonColorPressed">#FFE9E9E9</color>
+    <color name="buttonShadowColor">#66E9E9E9</color>
 
     <!-- DARK -->
     <color name="appBackgroundColor_dark">#FF444444</color>
