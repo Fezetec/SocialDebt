@@ -3,6 +3,7 @@ package com.example.socialdebt;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,7 @@ public class ResetDialog extends AppCompatDialogFragment {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 listener.Reset();
                 dismiss();
             }
@@ -35,6 +37,7 @@ public class ResetDialog extends AppCompatDialogFragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 dismiss();
             }
         });

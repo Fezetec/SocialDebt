@@ -3,6 +3,7 @@ package com.example.socialdebt;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +36,7 @@ public class ActivityDialog extends AppCompatDialogFragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 if(txtName.getText().length() <= 0){
                     Toast.makeText(view.getContext(), getString(R.string.toastEnterName), Toast.LENGTH_SHORT).show();
                 }else {
@@ -54,6 +56,7 @@ public class ActivityDialog extends AppCompatDialogFragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 dismiss();
             }
         });

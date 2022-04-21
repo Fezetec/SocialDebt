@@ -3,6 +3,7 @@ package com.example.socialdebt;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,7 @@ public class DeleteDialog extends AppCompatDialogFragment {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 listener.DeleteActivity(activity);
                 dismiss();
             }
@@ -38,6 +40,7 @@ public class DeleteDialog extends AppCompatDialogFragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 dismiss();
             }
         });

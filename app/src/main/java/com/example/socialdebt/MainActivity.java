@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
         switch (view.getId()){
             case R.id.imgNew:
                 OpenActivityDialog(-1);
@@ -107,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 activityLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                         ApplyScore(act.getPoints());
                     }
                 });
@@ -145,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 imgEditButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                         OpenActivityDialog(act.getId());
                     }
                 });
@@ -160,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 imgDeleteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                         OpenDeleteConfirmation(act.getId());
                     }
                 });
