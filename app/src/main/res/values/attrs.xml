@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="background_color" format="color"/>
+    <attr name="text_color" format="color"/>
+    <attr name="button_color" format="color"/>
+    <attr name="purple_200" format="color"/>
+    <attr name="purple_500" format="color"/>
+    <attr name="purple_700" format="color"/>
+    <attr name="teal_200" format="color"/>
+    <attr name="teal_700" format="color"/>
+    <attr name="black" format="color"/>
+    <attr name="white" format="color"/>
+    <attr name="appPrimary" format="color"/>
+    <attr name="appPrimary_dark" format="color"/>
+    <attr name="appSecondary" format="color"/>
+    <attr name="appSecondary_dark" format="color"/>
+    <attr name="appFontColor" format="color"/>
+    <attr name="activityBorderColor" format="color"/>
+    <attr name="minusPointsColor" format="color"/>
+    <attr name="plusPointsColor" format="color"/>
+    <attr name="defaultButtonColor" format="color"/>
+    <attr name="defaultButtonColorPressed" format="color"/>
+    <attr name="bigButtonBorderColor" format="color"/>
+    <attr name="bigButtonBorderColorTransparent" format="color"/>
+    <attr name="deleteButtonBorderColor" format="color"/>
+    <attr name="deleteButtonBorderColorTransparent" format="color"/>
+    <attr name="okButtonBorderColor" format="color"/>
+    <attr name="okButtonBorderColorTransparent" format="color"/>
+    <attr name="cancelButtonBorderColor" format="color"/>
+    <attr name="cancelButtonBorderColorTransparent" format="color"/>
+    <attr name="sliderColor" format="color"/>
+    <attr name="sliderTickColor" format="color"/>
+    <attr name="sliderColorTransparent" format="color"/>
+</resources>
