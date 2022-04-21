@@ -13,67 +13,32 @@
     <color name="appSecondary">#FF81D4FA</color>
     <color name="appSecondary_dark">#FF4BA3C7</color>
 
-    <!-- LIGHT -->
-        <color name="appFontColor">#FF666666</color>
-        <color name="activityBorderColor">#FFAAAAAA</color>
+    <color name="appFontColor">#FF666666</color>
+    <color name="activityBorderColor">#FFAAAAAA</color>
 
-        <color name="minusPointsColor">#FFFF3333</color>
-        <color name="plusPointsColor">#FF33FF33</color>
+    <color name="minusPointsColor">#FFFF3333</color>
+    <color name="plusPointsColor">#FF33FF33</color>
 
-        <!-- BUTTONS -->
-        <color name="defaultButtonColor">#FFFAFAFA</color>
-        <color name="defaultButtonColorPressed">#FFE9E9E9</color>
+    <!-- BUTTONS -->
+    <color name="defaultButtonColor">#FFFAFAFA</color>
+    <color name="defaultButtonColorPressed">#FFE9E9E9</color>
 
-        <color name="bigButtonBorderColor">#FF66ddff</color>
-        <color name="bigButtonBorderColorTransparent">#5566ddff</color>
+    <color name="bigButtonBorderColor">#FF66ddff</color>
+    <color name="bigButtonBorderColorTransparent">#5566ddff</color>
 
-        <color name="deleteButtonBorderColor">#FFFF3333</color>
-        <color name="deleteButtonBorderColorTransparent">#55FF3333</color>
+    <color name="deleteButtonBorderColor">#FFFF3333</color>
+    <color name="deleteButtonBorderColorTransparent">#55FF3333</color>
 
-        <color name="okButtonBorderColor">#FF00AA00</color>
-        <color name="okButtonBorderColorTransparent">#5500FF00</color>
+    <color name="okButtonBorderColor">#FF00AA00</color>
+    <color name="okButtonBorderColorTransparent">#5500FF00</color>
 
-        <color name="cancelButtonBorderColor">#FFFF3333</color>
-        <color name="cancelButtonBorderColorTransparent">#55FF3333</color>
-        <!-- END BUTTONS -->
+    <color name="cancelButtonBorderColor">#FFFF3333</color>
+    <color name="cancelButtonBorderColorTransparent">#55FF3333</color>
+    <!-- END BUTTONS -->
 
-        <!-- SLIDER -->
-        <color name="sliderColor">#FF66ddff</color>
-        <color name="sliderTickColor">#FFFAFAFA</color>
-        <color name="sliderColorTransparent">#5566ddff</color>
-        <!-- END SLIDER -->
-
-    <!-- END LIGHT -->
-
-    <!-- DARK -->
-        <color name="appFontColor_dark">#FF666666</color>
-        <color name="activityBorderColor_dark">#FFAAAAAA</color>
-
-        <color name="minusPointsColor_dark">#FFFF3333</color>
-        <color name="plusPointsColor_dark">#FF33FF33</color>
-
-        <!-- BUTTONS -->
-        <color name="defaultButtonColor_dark">#FFFAFAFA</color>
-        <color name="defaultButtonColorPressed_dark">#FFE9E9E9</color>
-
-        <color name="bigButtonBorderColor_dark">#FF66ddff</color>
-        <color name="bigButtonBorderColorTransparent_dark">#5566ddff</color>
-
-        <color name="deleteButtonBorderColor_dark">#FFFF3333</color>
-        <color name="deleteButtonBorderColorTransparent_dark">#55FF3333</color>
-
-        <color name="okButtonBorderColor_dark">#FF00AA00</color>
-        <color name="okButtonBorderColorTransparent_dark">#5500FF00</color>
-
-        <color name="cancelButtonBorderColor_dark">#FFFF3333</color>
-        <color name="cancelButtonBorderColorTransparent_dark">#55FF3333</color>
-        <!-- END BUTTONS -->
-
-        <!-- SLIDER -->
-        <color name="sliderColor_dark">#FF66ddff</color>
-        <color name="sliderTickColor_dark">#FFFAFAFA</color>
-        <color name="sliderColorTransparent_dark">#5566ddff</color>
-        <!-- END SLIDER -->
-
-    <!-- END DARK -->
+    <!-- SLIDER -->
+    <color name="sliderColor">#FF66ddff</color>
+    <color name="sliderTickColor">#FFFAFAFA</color>
+    <color name="sliderColorTransparent">#5566ddff</color>
+    <!-- END SLIDER -->
 </resources>
