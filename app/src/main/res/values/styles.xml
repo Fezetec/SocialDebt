@@ -6,48 +6,48 @@
     </style>
 
     <!-- Light application theme. -->
-    <style name="lightTheme" parent="Theme.MaterialComponents.Light.Bridge">
-        <item name="colorPrimary">@color/appPrimary</item>
-        <item name="colorPrimaryDark">@color/appPrimary_dark</item>
-        <item name="colorAccent">@color/appFontColor</item>
+<!--    <style name="lightTheme" parent="Theme.MaterialComponents.Light.Bridge">-->
+<!--        <item name="colorPrimary">@color/appPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/appPrimary_dark</item>-->
+<!--        <item name="colorAccent">@color/appFontColor</item>-->
 
-        <item name="black">#FF000000</item>
-        <item name="white">#FFFFFFFF</item>
+<!--        <item name="black">#FF000000</item>-->
+<!--        <item name="white">#FFFFFFFF</item>-->
 
-        <item name="appPrimary">#FFFAFAFA</item>
-        <item name="appPrimary_dark">#FFC7C7C7</item>
-        <item name="appSecondary">#FF81D4FA</item>
-        <item name="appSecondary_dark">#FF4BA3C7</item>
+<!--        <item name="appPrimary">#FFFAFAFA</item>-->
+<!--        <item name="appPrimary_dark">#FFC7C7C7</item>-->
+<!--        <item name="appSecondary">#FF81D4FA</item>-->
+<!--        <item name="appSecondary_dark">#FF4BA3C7</item>-->
 
-        <item name="appFontColor">#FF666666</item>
-        <item name="activityBorderColor">#FFAAAAAA</item>
+<!--        <item name="appFontColor">#FF666666</item>-->
+<!--        <item name="activityBorderColor">#FFAAAAAA</item>-->
 
-        <item name="minusPointsColor">#FFFF3333</item>
-        <item name="plusPointsColor">#FF33FF33</item>
+<!--        <item name="minusPointsColor">#FFFF3333</item>-->
+<!--        <item name="plusPointsColor">#FF33FF33</item>-->
 
-        <!-- BUTTONS -->
-        <item name="defaultButtonColor">#FFFAFAFA</item>
-        <item name="defaultButtonColorPressed">#FFE9E9E9</item>
+<!--        &lt;!&ndash; BUTTONS &ndash;&gt;-->
+<!--        <item name="defaultButtonColor">#FFFAFAFA</item>-->
+<!--        <item name="defaultButtonColorPressed">#FFE9E9E9</item>-->
 
-        <item name="bigButtonBorderColor">#FF66ddff</item>
-        <item name="bigButtonBorderColorTransparent">#5566ddff</item>
+<!--        <item name="bigButtonBorderColor">#FF66ddff</item>-->
+<!--        <item name="bigButtonBorderColorTransparent">#5566ddff</item>-->
 
-        <item name="deleteButtonBorderColor">#FFFF3333</item>
-        <item name="deleteButtonBorderColorTransparent">#55FF3333</item>
+<!--        <item name="deleteButtonBorderColor">#FFFF3333</item>-->
+<!--        <item name="deleteButtonBorderColorTransparent">#55FF3333</item>-->
 
-        <item name="okButtonBorderColor">#FF00AA00</item>
-        <item name="okButtonBorderColorTransparent">#5500FF00</item>
+<!--        <item name="okButtonBorderColor">#FF00AA00</item>-->
+<!--        <item name="okButtonBorderColorTransparent">#5500FF00</item>-->
 
-        <item name="cancelButtonBorderColor">#FFFF3333</item>
-        <item name="cancelButtonBorderColorTransparent">#55FF3333</item>
-        <!-- END BUTTONS -->
+<!--        <item name="cancelButtonBorderColor">#FFFF3333</item>-->
+<!--        <item name="cancelButtonBorderColorTransparent">#55FF3333</item>-->
+<!--        &lt;!&ndash; END BUTTONS &ndash;&gt;-->
 
-        <!-- SLIDER -->
-        <item name="sliderColor">#FF66ddff</item>
-        <item name="sliderTickColor">#FFFAFAFA</item>
-        <item name="sliderColorTransparent">#5566ddff</item>
-        <!-- END SLIDER -->
-    </style>
+<!--        &lt;!&ndash; SLIDER &ndash;&gt;-->
+<!--        <item name="sliderColor">#FF66ddff</item>-->
+<!--        <item name="sliderTickColor">#FFFAFAFA</item>-->
+<!--        <item name="sliderColorTransparent">#5566ddff</item>-->
+<!--        &lt;!&ndash; END SLIDER &ndash;&gt;-->
+<!--    </style>-->
 
     <!-- Dark application theme. -->
 <!--    <style name="darkTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
