@@ -1,8 +1,6 @@
 package com.example.socialdebt;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -32,12 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) {
-            setTheme(R.style.darkTheme);
-        } else {
-            setTheme(R.style.lightTheme);
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sharedPreferencesHelper = new SharedPreferencesHelper();
