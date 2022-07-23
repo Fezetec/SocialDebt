@@ -16,6 +16,7 @@ public class Activity {
         this.id = id;
         this.name = name;
         this.points = points;
+
     }
 
     @Override
